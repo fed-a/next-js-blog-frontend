@@ -3,6 +3,9 @@ const nextConfig = {
   experimental: {
     appDir: true,
   },
-}
+  env: {
+    STRAPI_ENDPOINT: process.env.STRAPI_ENDPOINT,
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
