@@ -1,6 +1,7 @@
-import { Locale } from "@lib/i18n";
-import { Routes } from "@lib/routes";
-import { Link } from "@components/core";
+import { Link } from '@components/core';
+
+import { Locale } from '@lib/i18n';
+import { routes } from '@lib/routes';
 
 interface NavigationProps {
   lang?: Locale;
@@ -11,13 +12,13 @@ function Navigation(props: NavigationProps) {
   return (
     <ul>
       <li>
-        <Link href={Routes.UiKit} lang={lang}>
+        <Link href={routes.uiKit} lang={lang}>
           Ui-kit
         </Link>
-        <Link href={Routes.Main} lang={lang}>
+        <Link href={routes.main} lang={lang}>
           Main
         </Link>
-        <Link href={Routes.Blog} lang={lang}>
+        <Link href={routes.blog} lang={lang}>
           Blog
         </Link>
       </li>

@@ -1,2 +1,2 @@
-export * from "./link";
-export * from "./navigation";
+export * from './link';
+export * from './typography';

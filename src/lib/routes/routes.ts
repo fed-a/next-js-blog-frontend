@@ -1,5 +1,7 @@
-export const enum Routes {
-  Main = "/",
-  Blog = "/blog",
-  UiKit = "/ui-kit",
-}
+export const routes = {
+  main: '/',
+  blog: '/blog',
+  uiKit: '/ui-kit',
+};
+
+export type Routes = (typeof routes)[keyof typeof routes];
