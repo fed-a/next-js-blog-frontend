@@ -12,13 +12,13 @@ function Navigation(props: NavigationProps) {
   return (
     <ul>
       <li>
-        <Link href={routes.uiKit} lang={lang}>
+        <Link href={routes.uiKit} locale={lang}>
           Ui-kit
         </Link>
-        <Link href={routes.main} lang={lang}>
+        <Link href={routes.main} locale={lang}>
           Main
         </Link>
-        <Link href={routes.blog} lang={lang}>
+        <Link href={routes.blog} locale={lang}>
           Blog
         </Link>
       </li>

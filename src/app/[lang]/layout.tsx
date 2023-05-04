@@ -1,10 +1,11 @@
 import Navigation from '@components/navigation';
 import { ThemeToggle } from '@components/theme-toggle';
 
-import { i18n, Locale } from '@lib/i18n';
+import { i18n } from '@lib/i18n';
 import { Providers } from '@lib/providers';
 
 import './globals.css';
+import { Children, Params } from './types';
 
 export const metadata = {
   title: 'Create Next App',
@@ -15,13 +16,7 @@ export async function generateStaticParams() {
   return i18n.locales.map((locale) => ({ lang: locale }));
 }
 
-export default function RootLayout({
-  children,
-  params,
-}: {
-  children: React.ReactNode;
-  params: { lang: Locale };
-}) {
+export default function RootLayout({ children, params }: Params & Children) {
   const { lang } = params;
 
   // favicon shows up as static prop...

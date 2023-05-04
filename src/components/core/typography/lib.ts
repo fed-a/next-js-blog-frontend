@@ -14,12 +14,7 @@ export function resolveTag(type: TypographyType, isSpan: boolean) {
       return 'h5';
     case 'h6':
       return 'h6';
-    case 'p1':
-    case 'p2':
-    case 'p3':
-    case 'p4':
-    case 'p5':
-    case 'p6':
+    default:
       return isSpan ? 'span' : 'p';
   }
 }
@@ -34,6 +29,8 @@ function resolveFontStyle(style: TypographyStyle) {
       return 'italic';
     case 'underlined':
       return 'underline';
+    default:
+      return '';
   }
 }
 
@@ -56,16 +53,18 @@ export function resolveStyles(type: TypographyType, styles: TypographyStyle[]) {
     case 'h6':
       return resolveFontStyles(styles);
     case 'p1':
-      return `${resolveFontStyles(styles)}`;
+      return `text-xxl ${resolveFontStyles(styles)}`;
     case 'p2':
-      return `${resolveFontStyles(styles)}`;
+      return `text-xl ${resolveFontStyles(styles)}`;
     case 'p3':
-      return `${resolveFontStyles(styles)}`;
+      return `text-l ${resolveFontStyles(styles)}`;
     case 'p4':
-      return `${resolveFontStyles(styles)}`;
+      return `text-m ${resolveFontStyles(styles)}`;
     case 'p5':
-      return `${resolveFontStyles(styles)}`;
+      return `text-s${resolveFontStyles(styles)}`;
     case 'p6':
-      return `${resolveFontStyles(styles)}`;
+      return `text-xs ${resolveFontStyles(styles)}`;
+    default:
+      return '';
   }
 }

@@ -1,0 +1,15 @@
+.af-link {
+  @apply relative inline-flex items-center gap-1;
+}
+
+.af-link__line {
+  @apply absolute bottom-0 left-0 h-[0.0625em] w-full border-none;
+}
+
+.af-link__line {
+  @apply bg-black;
+}
+
+[data-theme='dark'] .af-link__line {
+  @apply bg-white;
+}

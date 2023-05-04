@@ -2,13 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --black: #0f101c;
+  --white: #f0f0ff;
+  --purple: #4200f5;
+  --lighter-purple: #4806ff;
+  --darker-gray: #292e3a;
+  --gray: #4c515e;
+}
+
 [data-theme='dark'],
 [data-theme='dark'] body {
   @apply bg-black text-white;
 }
+[data-theme='dark'] path:not([stroke]) {
+  @apply stroke-white;
+}
 body {
   @apply bg-white text-black;
 }
+path:not([stroke]) {
+  @apply stroke-black;
+}
+
 @layer base {
   html {
     font-family: 'Infer', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Roboto, Arial,
@@ -65,7 +81,7 @@ body {
 
   @media screen and (max-width: 400px) {
     h1 {
-      font-size: 3.5rem;
+      font-size: 2.5rem;
     }
     h2 {
       font-size: 2rem;
