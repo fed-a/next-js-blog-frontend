@@ -8,6 +8,6 @@
   "useTabs": false,
   "bracketSpacing": true,
   "endOfLine": "lf",
-  "importOrder": ["^@components/", "^@lib/", "^[./].+"],
+  "importOrder": ["^@/components/", "^@/lib/", "^[./].+"],
   "importOrderSeparation": true
 }

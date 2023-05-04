@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Locale } from '@lib/i18n';
+import { Locale } from '@/lib/i18n';
 
 interface LocaleParam {
   lang: Locale;

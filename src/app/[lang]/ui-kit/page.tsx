@@ -1,6 +1,5 @@
-'use client';
-
-import { Button, ButtonLink, Link, Typography } from '@components/core';
+import { Button, ButtonLink, Link, Typography } from '@/components/core';
+import { Switch } from '@/components/core/switch';
 
 import { Params } from '../types';
 
@@ -44,11 +43,11 @@ function UiKit({ params }: Params) {
       </div>
       <Typography type="h1">Ссылки</Typography>
       <div>
-        <Link href="/ui-kit" locale={params.lang} linkIcon underline="always">
+        <Link href="/ui-kit" locale={params.lang} underlined="always" linkIcon>
           Ссылка
         </Link>
         <br />
-        <Link href="/" locale={params.lang} underline="hover">
+        <Link href="/" locale={params.lang} underlined="hover" linkIcon>
           Ссылка
         </Link>
         <br />
@@ -60,11 +59,11 @@ function UiKit({ params }: Params) {
       <ButtonLink href="/" locale={params.lang}>
         Link Test
       </ButtonLink>
-      <Button role="secondary" onClick={console.log}>
-        Button Test
-      </Button>
+      <Button>Button Test</Button>
       <Typography type="h1">Картинки</Typography>
       <Typography type="h1">Код</Typography>
+      <Typography type="h1">Свич</Typography>
+      <Switch />
     </>
   );
 }

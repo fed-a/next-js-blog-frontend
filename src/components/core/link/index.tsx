@@ -2,11 +2,11 @@
 
 import anime, { AnimeInstance } from 'animejs';
 import LinkNext from 'next/link';
-import React, { memo, useCallback, useEffect, useRef } from 'react';
+import React, { memo, useCallback, useEffect, useMemo, useRef } from 'react';
 
-import { Locale } from '@lib/i18n';
+import { Locale } from '@/lib/i18n';
 
-import { addLocale } from './lib';
+import { addLocale, getLinkAnimeInParams, getLinkAnimeOutParams } from './lib';
 import './link.css';
 
 interface LinkProps {
@@ -14,64 +14,46 @@ interface LinkProps {
   locale?: Locale;
   children: React.ReactNode;
   linkIcon?: boolean;
-  underline?: 'always' | 'hover' | 'never';
+  underlined?: 'always' | 'hover' | 'never';
 }
 
 function LinkComponent(props: LinkProps) {
-  const { href, locale, children, linkIcon, underline = 'never' } = props;
+  const { href, locale, children, linkIcon, underlined: underline = 'never' } = props;
   const lineRef = useRef<HTMLHRElement>(null);
-  const lineAnimation = useRef<AnimeInstance | null>(null);
+  const lineAnimeIn = useRef<AnimeInstance | null>(null);
+  const lineAnimeOut = useRef<AnimeInstance | null>(null);
+
+  const isUnderlinedOnHover = useMemo(() => underline === 'hover', [underline]);
 
   useEffect(() => {
-    if (lineRef.current) {
-      if (underline === 'hover') {
-        lineAnimation.current = anime({
-          targets: lineRef.current,
-          width: ['0%', '100%'],
-          direction: 'normal',
-          loop: false,
-          autoplay: false,
-          easing: 'easeOutElastic(1, .6)',
-        });
-        lineRef.current.setAttribute('style', 'width: 0');
-      }
-      if (underline === 'always') {
-        lineRef.current.setAttribute('style', 'width: 100%');
-      }
+    if (isUnderlinedOnHover) {
+      lineAnimeIn.current = anime(getLinkAnimeInParams(lineRef.current));
+      lineAnimeOut.current = anime(getLinkAnimeOutParams(lineRef.current));
+      lineRef.current?.setAttribute('style', 'width: 0%;');
     }
-  }, [underline]);
+  }, [isUnderlinedOnHover]);
 
-  const start = useCallback(() => {
-    if (lineAnimation.current?.reversed) {
-      lineAnimation.current.reverse();
+  const handleMouseIn = useCallback(() => {
+    if (isUnderlinedOnHover && lineRef.current) {
+      lineAnimeOut.current?.pause();
+      lineAnimeIn.current?.restart();
     }
-    lineAnimation.current?.restart();
-  }, []);
+  }, [isUnderlinedOnHover]);
 
-  const stop = useCallback(() => {
-    lineAnimation.current?.reverse();
-  }, []);
-
-  const onMouseEnter = useCallback(() => {
-    console.log('mouse enter');
-    if (underline === 'hover') {
-      start();
+  const handleMouseOut = useCallback(() => {
+    if (isUnderlinedOnHover && lineRef.current) {
+      lineAnimeIn.current?.pause();
+      lineAnimeOut.current?.restart();
     }
-  }, [start, underline]);
-  const onMouseLeave = useCallback(() => {
-    console.log('mouse leave');
-    if (underline === 'hover') {
-      stop();
-    }
-  }, [stop, underline]);
+  }, [isUnderlinedOnHover]);
 
   return (
     <LinkNext
       className="af-link"
       href={addLocale(href, locale)}
       locale={locale}
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
+      onMouseEnter={handleMouseIn}
+      onMouseLeave={handleMouseOut}
     >
       {children}
       {linkIcon && (
@@ -91,7 +73,11 @@ function LinkComponent(props: LinkProps) {
           />
         </svg>
       )}
-      <hr className="af-link__line" ref={lineRef} style={{ width: 0 }} />
+      <hr
+        className="af-link__line"
+        ref={lineRef}
+        style={{ width: underline === 'always' ? '100%' : '0%' }}
+      />
     </LinkNext>
   );
 }

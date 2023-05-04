@@ -35,12 +35,12 @@
           {
             "group": "internal",
             "position": "after",
-            "pattern": "@components/**"
+            "pattern": "@/components/**"
           },
           {
             "group": "internal",
             "position": "after",
-            "pattern": "@lib/**"
+            "pattern": "@/lib/**"
           }
         ],
         "pathGroupsExcludedImportTypes": ["builtin"],

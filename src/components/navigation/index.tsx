@@ -1,7 +1,7 @@
-import { Link } from '@components/core';
+import { Link } from '@/components/core';
 
-import { Locale } from '@lib/i18n';
-import { routes } from '@lib/routes';
+import { Locale } from '@/lib/i18n';
+import { routes } from '@/lib/routes';
 
 interface NavigationProps {
   lang?: Locale;

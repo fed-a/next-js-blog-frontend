@@ -1,7 +1,7 @@
 import { parse } from 'accept-language-parser';
 import { NextRequest, NextResponse } from 'next/server';
 
-import { i18n, Locale } from '@lib/i18n';
+import { i18n, Locale } from '@/lib/i18n';
 
 const getLangFromPathname = (pathname: string): Locale | null => {
   const lang = pathname.toLowerCase().split('/')[1];

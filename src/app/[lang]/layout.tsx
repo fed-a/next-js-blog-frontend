@@ -1,8 +1,8 @@
-import Navigation from '@components/navigation';
-import { ThemeToggle } from '@components/theme-toggle';
+import Navigation from '@/components/navigation';
+import { ThemeToggle } from '@/components/theme-toggle';
 
-import { i18n } from '@lib/i18n';
-import { Providers } from '@lib/providers';
+import { i18n } from '@/lib/i18n';
+import { Providers } from '@/lib/providers';
 
 import './globals.css';
 import { Children, Params } from './types';

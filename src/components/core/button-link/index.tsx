@@ -1,4 +1,4 @@
-import { Locale } from '@lib/i18n';
+import { Locale } from '@/lib/i18n';
 
 import { Button, ButtonProps } from '../button';
 import { Link } from '../link';
