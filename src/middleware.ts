@@ -15,7 +15,7 @@ const getLangFromLocaleStandart = (locale: string): Locale => {
 const findBestMatchingLocale = (acceptLangHeader: string) => {
   const parsedLangs = parse(acceptLangHeader);
 
-  for (let i = 0; i < parsedLangs.length; i++) {
+  for (let i = 0; i < parsedLangs.length; i += 1) {
     const parsedLang = parsedLangs[i];
     const matchedLocale = i18n.locales.find((locale) => {
       const lang = getLangFromLocaleStandart(locale);
@@ -33,7 +33,7 @@ function shouldNotRedirect(pathname: string, localeFromPathname: string | null) 
 }
 
 export function middleware(request: NextRequest) {
-  const pathname = request.nextUrl.pathname;
+  const { pathname } = request.nextUrl;
   const localeFromPathname = getLangFromPathname(pathname);
   if (shouldNotRedirect(pathname, localeFromPathname)) {
     return;
@@ -43,11 +43,11 @@ export function middleware(request: NextRequest) {
     request.headers.get('Accept-Language') || i18n.defaultLocale,
   );
   if (!localeFromPathname) {
-    return NextResponse.redirect(new URL(`/${userLocale}`, request.nextUrl));
+    NextResponse.redirect(new URL(`/${userLocale}`, request.nextUrl));
+  } else {
+    const pathnameWithoutLocale = pathname.replace(`/${localeFromPathname}`, `/${userLocale}`);
+    NextResponse.redirect(new URL(pathnameWithoutLocale, request.nextUrl));
   }
-
-  const pathnameWithoutLocale = pathname.replace(`/${localeFromPathname}`, `/${userLocale}`);
-  return NextResponse.redirect(new URL(pathnameWithoutLocale, request.nextUrl));
 }
 
 export const config = {

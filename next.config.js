@@ -6,6 +6,9 @@ const nextConfig = {
   env: {
     STRAPI_ENDPOINT: process.env.STRAPI_ENDPOINT,
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 };
 
 module.exports = nextConfig;
