@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 import { parse } from 'accept-language-parser';
 import { NextRequest, NextResponse } from 'next/server';
 
@@ -43,11 +44,10 @@ export function middleware(request: NextRequest) {
     request.headers.get('Accept-Language') || i18n.defaultLocale,
   );
   if (!localeFromPathname) {
-    NextResponse.redirect(new URL(`/${userLocale}`, request.nextUrl));
-  } else {
-    const pathnameWithoutLocale = pathname.replace(`/${localeFromPathname}`, `/${userLocale}`);
-    NextResponse.redirect(new URL(pathnameWithoutLocale, request.nextUrl));
+    return NextResponse.redirect(new URL(`/${userLocale}`, request.nextUrl));
   }
+  const pathnameWithoutLocale = pathname.replace(`/${localeFromPathname}`, `/${userLocale}`);
+  return NextResponse.redirect(new URL(pathnameWithoutLocale, request.nextUrl));
 }
 
 export const config = {

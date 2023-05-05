@@ -9,5 +9,7 @@ const PortalComponent = dynamic(() => import('./portal').then((mod) => mod.Porta
 });
 
 export function Portal({ children }: PortalProps) {
+  // TODO: сломались типы при апдейте
+  // @ts-ignore
   return <PortalComponent>{children}</PortalComponent>;
 }
