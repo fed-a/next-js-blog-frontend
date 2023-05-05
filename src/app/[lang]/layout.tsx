@@ -5,6 +5,7 @@ import { i18n } from '@/lib/i18n';
 import { Providers } from '@/lib/providers';
 
 import './globals.css';
+import './locomotive-scroll.css';
 import { Children, Params } from './types';
 
 export const metadata = {
@@ -32,8 +33,8 @@ export default function RootLayout({ children, params }: Params & Children) {
   return (
     <html lang={lang} suppressHydrationWarning>
       <body>
-        <Navigation lang={lang} />
         <Providers>
+          <Navigation lang={lang} />
           <ThemeToggle />
           {children}
         </Providers>

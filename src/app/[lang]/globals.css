@@ -62,7 +62,7 @@ path:not([stroke]) {
 
   @media screen and (max-width: 768px) {
     h1 {
-      font-size: 5rem;
+      font-size: 3.5rem;
     }
     h2 {
       font-size: 3rem;
@@ -79,7 +79,7 @@ path:not([stroke]) {
     }
   }
 
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 480px) {
     h1 {
       font-size: 2.5rem;
     }
@@ -94,6 +94,21 @@ path:not([stroke]) {
     h6 {
       font-size: 1rem;
     }
+  }
+}
+
+@media screen and (max-width: 360px) {
+  h1 {
+    font-size: 2rem;
+  }
+  h2 {
+    font-size: 1.5rem;
+  }
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-size: 1rem;
   }
 }
 

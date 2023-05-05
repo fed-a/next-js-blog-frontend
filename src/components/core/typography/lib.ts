@@ -64,6 +64,10 @@ export function resolveStyles(type: TypographyType, styles: TypographyStyle[]) {
       return `text-s${resolveFontStyles(styles)}`;
     case 'p6':
       return `text-xs ${resolveFontStyles(styles)}`;
+    case 'marquee':
+      return `font-[Unbounded,_sans] text-[2rem] md:text-[3rem] lg:text-[4rem] ${resolveFontStyles(
+        styles,
+      )}`;
     default:
       return '';
   }

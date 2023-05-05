@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { cn } from '@/lib/utils';
+
 import { resolveStyles, resolveTag } from './lib';
 import { TypographyProps } from './types';
 
@@ -8,6 +10,7 @@ function TypographyComponent({
   type = 'p2',
   styleType = ['normal'],
   isSpan = true,
+  className = '',
 }: TypographyProps) {
   const tag = resolveTag(type, isSpan);
   const styles = resolveStyles(type, styleType);
@@ -15,7 +18,7 @@ function TypographyComponent({
   return React.createElement(
     tag,
     {
-      className: styles,
+      className: cn(styles, className),
     },
     children,
   );
