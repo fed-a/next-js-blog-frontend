@@ -1,0 +1,30 @@
+name: Deploy to server
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+      
+    - name: Install dependencies
+      run: yarn
+      
+    - name: Build the app
+      run: yarn build
+      
+    - name: Deploy the app
+      uses: easingthemes/ssh-deploy@v2.1.5
+      env:
+        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        ARGS: "-avz --delete"
+        SOURCE: "build/"
+        REMOTE_PATH: "/var/www/myapp"
+        SERVER_PORT: "22"
+        SERVER_USER: "myuser"
+        SERVER_HOST: "your_server_ip"
