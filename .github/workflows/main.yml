@@ -6,8 +6,6 @@ on:
       - main
 
 env:
-  DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
-  DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
   DIGITALOCEAN_REGISTRY_USERNAME: ${{ secrets.DIGITALOCEAN_REGISTRY_USERNAME }}
   DIGITALOCEAN_REGISTRY_PASSWORD: ${{ secrets.DIGITALOCEAN_REGISTRY_PASSWORD }}
 
@@ -25,15 +23,10 @@ jobs:
       - name: Build application
         run: yarn build
 
-      - name: Set tag with commit SHA
-        run: |
-          DOCKER_TAG=af-nextjs-blog:${{ github.sha }}
-          echo "::set-env name=DOCKER_TAG::$DOCKER_TAG"
-
       - name: Build Docker image
         run: |
           docker build -t $DOCKER_TAG .
-          docker tag $DOCKER_TAG registry.digitalocean.com/af-nextjs-blog/$DOCKER_TAG
+          docker tag af-nextjs-blog:${GITHUB_SHA} registry.digitalocean.com/af-nextjs-blog/af-nextjs-blog:${GITHUB_SHA}
 
       - name: Login to DigitalOcean registry
         run: echo $DIGITALOCEAN_REGISTRY_PASSWORD | docker login -u $DIGITALOCEAN_REGISTRY_USERNAME --password-stdin registry.digitalocean.com
