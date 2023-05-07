@@ -25,11 +25,11 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t $DOCKER_TAG .
+          docker build -t af-nextjs-blog:${GITHUB_SHA} .
           docker tag af-nextjs-blog:${GITHUB_SHA} registry.digitalocean.com/af-nextjs-blog/af-nextjs-blog:${GITHUB_SHA}
 
       - name: Login to DigitalOcean registry
         run: echo $DIGITALOCEAN_REGISTRY_PASSWORD | docker login -u $DIGITALOCEAN_REGISTRY_USERNAME --password-stdin registry.digitalocean.com
 
       - name: Push Docker image to registry
-        run: docker push registry.digitalocean.com/af-nextjs-blog/$DOCKER_TAG
+        run: docker push registry.digitalocean.com/af-nextjs-blog/af-nextjs-blog:${GITHUB_SHA}
