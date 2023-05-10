@@ -72,13 +72,13 @@ function UiKit({ params }: Params) {
       <Typography type="h1">Свич</Typography>
       <Switch />
       <Typography type="h1">Бегущая строка</Typography>
-      <Marquee speed={12} repeatTimes={6}>
+      <Marquee speed={8} repeatTimes={6}>
         <Typography type="marquee">TestTestTestTest TestTes</Typography>
       </Marquee>
-      <Marquee speed={10} direction="right" repeatTimes={6}>
+      <Marquee speed={6} direction="right" repeatTimes={6}>
         <Typography type="marquee">TestTestTestTest TestTes</Typography>
       </Marquee>
-      <Marquee speed={6} repeatTimes={6}>
+      <Marquee speed={4} repeatTimes={6}>
         <Typography type="marquee">TestTestTestTest TestTes</Typography>
       </Marquee>
 
