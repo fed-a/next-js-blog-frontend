@@ -25,7 +25,6 @@ export type About = {
   locale?: Maybe<Scalars['String']>;
   localizations?: Maybe<AboutRelationResponseCollection>;
   myStack: Scalars['String'];
-  stack: Scalars['String'];
   stackImages: Array<Maybe<ComponentLandingImageName>>;
   title: Scalars['String'];
   updatedAt?: Maybe<Scalars['DateTime']>;
@@ -59,7 +58,6 @@ export type AboutEntityResponse = {
 
 export type AboutInput = {
   myStack?: InputMaybe<Scalars['String']>;
-  stack?: InputMaybe<Scalars['String']>;
   stackImages?: InputMaybe<Array<InputMaybe<ComponentLandingImageNameInput>>>;
   title?: InputMaybe<Scalars['String']>;
   workExp?: InputMaybe<Array<InputMaybe<ComponentLandingWorkExpInput>>>;
@@ -129,23 +127,30 @@ export type BooleanFilterInput = {
 
 export type ComponentLandingImageName = {
   __typename?: 'ComponentLandingImageName';
+  iconName: Scalars['String'];
   id: Scalars['ID'];
+  order?: Maybe<Scalars['Int']>;
 };
 
 export type ComponentLandingImageNameFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<ComponentLandingImageNameFiltersInput>>>;
+  iconName?: InputMaybe<StringFilterInput>;
   not?: InputMaybe<ComponentLandingImageNameFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<ComponentLandingImageNameFiltersInput>>>;
+  order?: InputMaybe<IntFilterInput>;
 };
 
 export type ComponentLandingImageNameInput = {
+  iconName?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['ID']>;
+  order?: InputMaybe<Scalars['Int']>;
 };
 
 export type ComponentLandingMenuItem = {
   __typename?: 'ComponentLandingMenuItem';
   href: Scalars['String'];
   id: Scalars['ID'];
+  order?: Maybe<Scalars['Int']>;
   title: Scalars['String'];
 };
 
@@ -154,12 +159,14 @@ export type ComponentLandingMenuItemFiltersInput = {
   href?: InputMaybe<StringFilterInput>;
   not?: InputMaybe<ComponentLandingMenuItemFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<ComponentLandingMenuItemFiltersInput>>>;
+  order?: InputMaybe<IntFilterInput>;
   title?: InputMaybe<StringFilterInput>;
 };
 
 export type ComponentLandingMenuItemInput = {
   href?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['ID']>;
+  order?: InputMaybe<Scalars['Int']>;
   title?: InputMaybe<Scalars['String']>;
 };
 
@@ -234,6 +241,7 @@ export type ComponentLandingWorkExp = {
   from: Scalars['String'];
   id: Scalars['ID'];
   objectives?: Maybe<Scalars['String']>;
+  order?: Maybe<Scalars['Int']>;
   to: Scalars['String'];
   workName: Scalars['String'];
 };
@@ -244,6 +252,7 @@ export type ComponentLandingWorkExpFiltersInput = {
   not?: InputMaybe<ComponentLandingWorkExpFiltersInput>;
   objectives?: InputMaybe<StringFilterInput>;
   or?: InputMaybe<Array<InputMaybe<ComponentLandingWorkExpFiltersInput>>>;
+  order?: InputMaybe<IntFilterInput>;
   to?: InputMaybe<StringFilterInput>;
   workName?: InputMaybe<StringFilterInput>;
 };
@@ -252,6 +261,7 @@ export type ComponentLandingWorkExpInput = {
   from?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['ID']>;
   objectives?: InputMaybe<Scalars['String']>;
+  order?: InputMaybe<Scalars['Int']>;
   to?: InputMaybe<Scalars['String']>;
   workName?: InputMaybe<Scalars['String']>;
 };
@@ -1539,14 +1549,14 @@ export type LandingQueryVariables = Exact<{
 }>;
 
 
-export type LandingQuery = { __typename?: 'Query', blog?: { __typename?: 'BlogEntityResponse', data?: { __typename?: 'BlogEntity', id?: string | null, attributes?: { __typename?: 'Blog', title?: string | null, tip?: string | null, lastPostsTitle?: string | null, locale?: string | null } | null } | null } | null, about?: { __typename?: 'AboutEntityResponse', data?: { __typename?: 'AboutEntity', id?: string | null, attributes?: { __typename?: 'About', title: string, myStack: string, stack: string, locale?: string | null, stackImages: Array<{ __typename?: 'ComponentLandingImageName', id: string } | null>, workExp?: Array<{ __typename?: 'ComponentLandingWorkExp', id: string, workName: string, from: string, to: string, objectives?: string | null } | null> | null } | null } | null } | null, hero?: { __typename?: 'HeroEntityResponse', data?: { __typename?: 'HeroEntity', id?: string | null, attributes?: { __typename?: 'Hero', name: string, toContacts: string, toWorks: string, down: string, consoleTexts?: Array<{ __typename?: 'ComponentLandingTypingText', id: string, openCommand: string, asciiImage?: string | null } | null> | null, socialLinks?: Array<{ __typename?: 'ComponentLandingSocialLink', id: string, iconName: string } | null> | null } | null } | null } | null, project?: { __typename?: 'ProjectEntityResponse', data?: { __typename?: 'ProjectEntity', id?: string | null, attributes?: { __typename?: 'Project', title: string, locale?: string | null, projects?: Array<{ __typename?: 'ComponentLandingProjectExample', id: string, name?: string | null, hrefSource?: string | null, hrefPreview?: string | null } | null> | null } | null } | null } | null };
+export type LandingQuery = { __typename?: 'Query', blog?: { __typename?: 'BlogEntityResponse', data?: { __typename?: 'BlogEntity', id?: string | null, attributes?: { __typename?: 'Blog', title?: string | null, tip?: string | null, lastPostsTitle?: string | null, locale?: string | null } | null } | null } | null, about?: { __typename?: 'AboutEntityResponse', data?: { __typename?: 'AboutEntity', id?: string | null, attributes?: { __typename?: 'About', title: string, myStack: string, locale?: string | null, stackImages: Array<{ __typename?: 'ComponentLandingImageName', id: string, order?: number | null, iconName: string } | null>, workExp?: Array<{ __typename?: 'ComponentLandingWorkExp', id: string, order?: number | null, workName: string, from: string, to: string, objectives?: string | null } | null> | null } | null } | null } | null, hero?: { __typename?: 'HeroEntityResponse', data?: { __typename?: 'HeroEntity', id?: string | null, attributes?: { __typename?: 'Hero', name: string, toContacts: string, toWorks: string, down: string, consoleTexts?: Array<{ __typename?: 'ComponentLandingTypingText', id: string, openCommand: string, asciiImage?: string | null } | null> | null, socialLinks?: Array<{ __typename?: 'ComponentLandingSocialLink', id: string, iconName: string } | null> | null } | null } | null } | null, project?: { __typename?: 'ProjectEntityResponse', data?: { __typename?: 'ProjectEntity', id?: string | null, attributes?: { __typename?: 'Project', title: string, locale?: string | null, projects?: Array<{ __typename?: 'ComponentLandingProjectExample', id: string, name?: string | null, hrefSource?: string | null, hrefPreview?: string | null } | null> | null } | null } | null } | null };
 
 export type MenuQueryVariables = Exact<{
   locale?: InputMaybe<Scalars['I18NLocaleCode']>;
 }>;
 
 
-export type MenuQuery = { __typename?: 'Query', menu?: { __typename?: 'MenuEntityResponse', data?: { __typename?: 'MenuEntity', id?: string | null, attributes?: { __typename?: 'Menu', locale?: string | null, items?: Array<{ __typename?: 'ComponentLandingMenuItem', id: string, title: string, href: string } | null> | null } | null } | null } | null };
+export type MenuQuery = { __typename?: 'Query', menu?: { __typename?: 'MenuEntityResponse', data?: { __typename?: 'MenuEntity', id?: string | null, attributes?: { __typename?: 'Menu', locale?: string | null, items?: Array<{ __typename?: 'ComponentLandingMenuItem', id: string, order?: number | null, title: string, href: string } | null> | null } | null } | null } | null };
 
 
 export const PostDocument = gql`
@@ -1706,10 +1716,12 @@ export const LandingDocument = gql`
         myStack
         stackImages(sort: ["id"]) {
           id
+          order
+          iconName
         }
-        stack
         workExp(sort: ["id"]) {
           id
+          order
           workName
           from
           to
@@ -1792,6 +1804,7 @@ export const MenuDocument = gql`
       attributes {
         items(sort: ["id"]) {
           id
+          order
           title
           href
         }

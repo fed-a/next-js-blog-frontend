@@ -34,7 +34,6 @@ export default async function Home({ params }: Params) {
       <section className="min-h-[100dvh]">
         <p>{aboutAttributes?.title}</p>
         <p>{aboutAttributes?.myStack}</p>
-        <p>{aboutAttributes?.stack}</p>
       </section>
       <section className="min-h-[100dvh]">
         <p>{projectAttributes?.title}</p>

@@ -18,10 +18,12 @@ query Landing($locale: I18NLocaleCode) {
         myStack
         stackImages(sort: ["id"]) {
           id
+          order
+          iconName
         }
-        stack
         workExp(sort: ["id"]) {
           id
+          order
           workName
           from
           to

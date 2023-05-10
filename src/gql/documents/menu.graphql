@@ -5,6 +5,7 @@ query Menu($locale: I18NLocaleCode) {
       attributes {
         items(sort: ["id"]) {
           id
+          order
           title
           href
         }
