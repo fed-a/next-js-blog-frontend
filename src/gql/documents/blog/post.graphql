@@ -1,0 +1,17 @@
+query Post($locale: I18NLocaleCode, $id: ID) {
+  post(locale: $locale, id: $id) {
+    data {
+      id
+      attributes {
+        title
+        text
+        locale
+        likes
+        fires
+        loves
+        crys
+        evils
+      }
+    }
+  }
+}

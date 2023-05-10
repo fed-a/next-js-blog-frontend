@@ -19,6 +19,90 @@ export type Scalars = {
   Upload: any;
 };
 
+export type About = {
+  __typename?: 'About';
+  createdAt?: Maybe<Scalars['DateTime']>;
+  locale?: Maybe<Scalars['String']>;
+  localizations?: Maybe<AboutRelationResponseCollection>;
+  myStack: Scalars['String'];
+  stack: Scalars['String'];
+  stackImages: Array<Maybe<ComponentLandingImageName>>;
+  title: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  workExp?: Maybe<Array<Maybe<ComponentLandingWorkExp>>>;
+};
+
+
+export type AboutStackImagesArgs = {
+  filters?: InputMaybe<ComponentLandingImageNameFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+export type AboutWorkExpArgs = {
+  filters?: InputMaybe<ComponentLandingWorkExpFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type AboutEntity = {
+  __typename?: 'AboutEntity';
+  attributes?: Maybe<About>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type AboutEntityResponse = {
+  __typename?: 'AboutEntityResponse';
+  data?: Maybe<AboutEntity>;
+};
+
+export type AboutInput = {
+  myStack?: InputMaybe<Scalars['String']>;
+  stack?: InputMaybe<Scalars['String']>;
+  stackImages?: InputMaybe<Array<InputMaybe<ComponentLandingImageNameInput>>>;
+  title?: InputMaybe<Scalars['String']>;
+  workExp?: InputMaybe<Array<InputMaybe<ComponentLandingWorkExpInput>>>;
+};
+
+export type AboutRelationResponseCollection = {
+  __typename?: 'AboutRelationResponseCollection';
+  data: Array<AboutEntity>;
+};
+
+export type Blog = {
+  __typename?: 'Blog';
+  createdAt?: Maybe<Scalars['DateTime']>;
+  lastPostsTitle?: Maybe<Scalars['String']>;
+  locale?: Maybe<Scalars['String']>;
+  localizations?: Maybe<BlogRelationResponseCollection>;
+  tip?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type BlogEntity = {
+  __typename?: 'BlogEntity';
+  attributes?: Maybe<Blog>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type BlogEntityResponse = {
+  __typename?: 'BlogEntityResponse';
+  data?: Maybe<BlogEntity>;
+};
+
+export type BlogInput = {
+  lastPostsTitle?: InputMaybe<Scalars['String']>;
+  tip?: InputMaybe<Scalars['String']>;
+  title?: InputMaybe<Scalars['String']>;
+};
+
+export type BlogRelationResponseCollection = {
+  __typename?: 'BlogRelationResponseCollection';
+  data: Array<BlogEntity>;
+};
+
 export type BooleanFilterInput = {
   and?: InputMaybe<Array<InputMaybe<Scalars['Boolean']>>>;
   between?: InputMaybe<Array<InputMaybe<Scalars['Boolean']>>>;
@@ -43,41 +127,172 @@ export type BooleanFilterInput = {
   startsWith?: InputMaybe<Scalars['Boolean']>;
 };
 
-export type ComponentComponentsMarquee = {
-  __typename?: 'ComponentComponentsMarquee';
+export type ComponentLandingImageName = {
+  __typename?: 'ComponentLandingImageName';
   id: Scalars['ID'];
-  item?: Maybe<Array<Maybe<ComponentComponentsMarqueeItem>>>;
-  test2?: Maybe<Array<Maybe<ComponentComponentsMarqueeItem>>>;
+};
+
+export type ComponentLandingImageNameFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentLandingImageNameFiltersInput>>>;
+  not?: InputMaybe<ComponentLandingImageNameFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentLandingImageNameFiltersInput>>>;
+};
+
+export type ComponentLandingImageNameInput = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
+export type ComponentLandingMenuItem = {
+  __typename?: 'ComponentLandingMenuItem';
+  href: Scalars['String'];
+  id: Scalars['ID'];
+  title: Scalars['String'];
+};
+
+export type ComponentLandingMenuItemFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentLandingMenuItemFiltersInput>>>;
+  href?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<ComponentLandingMenuItemFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentLandingMenuItemFiltersInput>>>;
+  title?: InputMaybe<StringFilterInput>;
+};
+
+export type ComponentLandingMenuItemInput = {
+  href?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['ID']>;
+  title?: InputMaybe<Scalars['String']>;
+};
+
+export type ComponentLandingProjectExample = {
+  __typename?: 'ComponentLandingProjectExample';
+  hrefPreview?: Maybe<Scalars['String']>;
+  hrefSource?: Maybe<Scalars['String']>;
+  id: Scalars['ID'];
+  name?: Maybe<Scalars['String']>;
+};
+
+export type ComponentLandingProjectExampleFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentLandingProjectExampleFiltersInput>>>;
+  hrefPreview?: InputMaybe<StringFilterInput>;
+  hrefSource?: InputMaybe<StringFilterInput>;
+  name?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<ComponentLandingProjectExampleFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentLandingProjectExampleFiltersInput>>>;
+};
+
+export type ComponentLandingProjectExampleInput = {
+  hrefPreview?: InputMaybe<Scalars['String']>;
+  hrefSource?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['ID']>;
+  name?: InputMaybe<Scalars['String']>;
+};
+
+export type ComponentLandingSocialLink = {
+  __typename?: 'ComponentLandingSocialLink';
+  href: Scalars['String'];
+  iconName: Scalars['String'];
+  id: Scalars['ID'];
+};
+
+export type ComponentLandingSocialLinkFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentLandingSocialLinkFiltersInput>>>;
+  href?: InputMaybe<StringFilterInput>;
+  iconName?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<ComponentLandingSocialLinkFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentLandingSocialLinkFiltersInput>>>;
+};
+
+export type ComponentLandingSocialLinkInput = {
+  href?: InputMaybe<Scalars['String']>;
+  iconName?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['ID']>;
+};
+
+export type ComponentLandingTypingText = {
+  __typename?: 'ComponentLandingTypingText';
+  asciiImage?: Maybe<Scalars['String']>;
+  id: Scalars['ID'];
+  openCommand: Scalars['String'];
+};
+
+export type ComponentLandingTypingTextFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentLandingTypingTextFiltersInput>>>;
+  asciiImage?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<ComponentLandingTypingTextFiltersInput>;
+  openCommand?: InputMaybe<StringFilterInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentLandingTypingTextFiltersInput>>>;
+};
+
+export type ComponentLandingTypingTextInput = {
+  asciiImage?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['ID']>;
+  openCommand?: InputMaybe<Scalars['String']>;
+};
+
+export type ComponentLandingWorkExp = {
+  __typename?: 'ComponentLandingWorkExp';
+  from: Scalars['String'];
+  id: Scalars['ID'];
+  objectives?: Maybe<Scalars['String']>;
+  to: Scalars['String'];
+  workName: Scalars['String'];
+};
+
+export type ComponentLandingWorkExpFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentLandingWorkExpFiltersInput>>>;
+  from?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<ComponentLandingWorkExpFiltersInput>;
+  objectives?: InputMaybe<StringFilterInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentLandingWorkExpFiltersInput>>>;
+  to?: InputMaybe<StringFilterInput>;
+  workName?: InputMaybe<StringFilterInput>;
+};
+
+export type ComponentLandingWorkExpInput = {
+  from?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['ID']>;
+  objectives?: InputMaybe<Scalars['String']>;
+  to?: InputMaybe<Scalars['String']>;
+  workName?: InputMaybe<Scalars['String']>;
+};
+
+export type ComponentSharedMetaSocial = {
+  __typename?: 'ComponentSharedMetaSocial';
+  description: Scalars['String'];
+  id: Scalars['ID'];
+  image?: Maybe<UploadFileEntityResponse>;
+  socialNetwork: Enum_Componentsharedmetasocial_Socialnetwork;
+  title: Scalars['String'];
+};
+
+export type ComponentSharedMetaSocialFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentSharedMetaSocialFiltersInput>>>;
+  description?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<ComponentSharedMetaSocialFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentSharedMetaSocialFiltersInput>>>;
+  socialNetwork?: InputMaybe<StringFilterInput>;
+  title?: InputMaybe<StringFilterInput>;
+};
+
+export type ComponentSharedSeo = {
+  __typename?: 'ComponentSharedSeo';
+  canonicalURL?: Maybe<Scalars['String']>;
+  id: Scalars['ID'];
+  keywords?: Maybe<Scalars['String']>;
+  metaDescription: Scalars['String'];
+  metaImage: UploadFileEntityResponse;
+  metaRobots?: Maybe<Scalars['String']>;
+  metaSocial?: Maybe<Array<Maybe<ComponentSharedMetaSocial>>>;
+  metaTitle: Scalars['String'];
+  metaViewport?: Maybe<Scalars['String']>;
+  structuredData?: Maybe<Scalars['JSON']>;
 };
 
 
-export type ComponentComponentsMarqueeItemArgs = {
-  filters?: InputMaybe<ComponentComponentsMarqueeItemFiltersInput>;
+export type ComponentSharedSeoMetaSocialArgs = {
+  filters?: InputMaybe<ComponentSharedMetaSocialFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-};
-
-
-export type ComponentComponentsMarqueeTest2Args = {
-  filters?: InputMaybe<ComponentComponentsMarqueeItemFiltersInput>;
-  pagination?: InputMaybe<PaginationArg>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-};
-
-export type ComponentComponentsMarqueeItem = {
-  __typename?: 'ComponentComponentsMarqueeItem';
-  id: Scalars['ID'];
-  img?: Maybe<UploadFileEntityResponse>;
-  svg?: Maybe<Scalars['String']>;
-  text: Scalars['String'];
-};
-
-export type ComponentComponentsMarqueeItemFiltersInput = {
-  and?: InputMaybe<Array<InputMaybe<ComponentComponentsMarqueeItemFiltersInput>>>;
-  not?: InputMaybe<ComponentComponentsMarqueeItemFiltersInput>;
-  or?: InputMaybe<Array<InputMaybe<ComponentComponentsMarqueeItemFiltersInput>>>;
-  svg?: InputMaybe<StringFilterInput>;
-  text?: InputMaybe<StringFilterInput>;
 };
 
 export type DateTimeFilterInput = {
@@ -103,6 +318,11 @@ export type DateTimeFilterInput = {
   or?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
   startsWith?: InputMaybe<Scalars['DateTime']>;
 };
+
+export enum Enum_Componentsharedmetasocial_Socialnetwork {
+  Facebook = 'Facebook',
+  Twitter = 'Twitter'
+}
 
 export type FileInfoInput = {
   alternativeText?: InputMaybe<Scalars['String']>;
@@ -134,7 +354,60 @@ export type FloatFilterInput = {
   startsWith?: InputMaybe<Scalars['Float']>;
 };
 
-export type GenericMorph = ComponentComponentsMarquee | ComponentComponentsMarqueeItem | I18NLocale | MainPage | Menu | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+export type GenericMorph = About | Blog | ComponentLandingImageName | ComponentLandingMenuItem | ComponentLandingProjectExample | ComponentLandingSocialLink | ComponentLandingTypingText | ComponentLandingWorkExp | ComponentSharedMetaSocial | ComponentSharedSeo | Hero | I18NLocale | Menu | Post | Project | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+
+export type Hero = {
+  __typename?: 'Hero';
+  consoleTexts?: Maybe<Array<Maybe<ComponentLandingTypingText>>>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  down: Scalars['String'];
+  locale?: Maybe<Scalars['String']>;
+  localizations?: Maybe<HeroRelationResponseCollection>;
+  name: Scalars['String'];
+  socialLinks?: Maybe<Array<Maybe<ComponentLandingSocialLink>>>;
+  toContacts: Scalars['String'];
+  toWorks: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+
+export type HeroConsoleTextsArgs = {
+  filters?: InputMaybe<ComponentLandingTypingTextFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+export type HeroSocialLinksArgs = {
+  filters?: InputMaybe<ComponentLandingSocialLinkFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type HeroEntity = {
+  __typename?: 'HeroEntity';
+  attributes?: Maybe<Hero>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type HeroEntityResponse = {
+  __typename?: 'HeroEntityResponse';
+  data?: Maybe<HeroEntity>;
+};
+
+export type HeroInput = {
+  consoleTexts?: InputMaybe<Array<InputMaybe<ComponentLandingTypingTextInput>>>;
+  down?: InputMaybe<Scalars['String']>;
+  name?: InputMaybe<Scalars['String']>;
+  socialLinks?: InputMaybe<Array<InputMaybe<ComponentLandingSocialLinkInput>>>;
+  toContacts?: InputMaybe<Scalars['String']>;
+  toWorks?: InputMaybe<Scalars['String']>;
+};
+
+export type HeroRelationResponseCollection = {
+  __typename?: 'HeroRelationResponseCollection';
+  data: Array<HeroEntity>;
+};
 
 export type I18NLocale = {
   __typename?: 'I18NLocale';
@@ -244,58 +517,20 @@ export type JsonFilterInput = {
   startsWith?: InputMaybe<Scalars['JSON']>;
 };
 
-export type MainPage = {
-  __typename?: 'MainPage';
-  createdAt?: Maybe<Scalars['DateTime']>;
-  locale?: Maybe<Scalars['String']>;
-  localizations?: Maybe<MainPageRelationResponseCollection>;
-  publishedAt?: Maybe<Scalars['DateTime']>;
-  subtitle: Scalars['String'];
-  title: Scalars['String'];
-  updatedAt?: Maybe<Scalars['DateTime']>;
-};
-
-
-export type MainPageLocalizationsArgs = {
-  publicationState?: InputMaybe<PublicationState>;
-};
-
-export type MainPageEntity = {
-  __typename?: 'MainPageEntity';
-  attributes?: Maybe<MainPage>;
-  id?: Maybe<Scalars['ID']>;
-};
-
-export type MainPageEntityResponse = {
-  __typename?: 'MainPageEntityResponse';
-  data?: Maybe<MainPageEntity>;
-};
-
-export type MainPageInput = {
-  publishedAt?: InputMaybe<Scalars['DateTime']>;
-  subtitle?: InputMaybe<Scalars['String']>;
-  title?: InputMaybe<Scalars['String']>;
-};
-
-export type MainPageRelationResponseCollection = {
-  __typename?: 'MainPageRelationResponseCollection';
-  data: Array<MainPageEntity>;
-};
-
 export type Menu = {
   __typename?: 'Menu';
-  blog: Scalars['String'];
   createdAt?: Maybe<Scalars['DateTime']>;
+  items?: Maybe<Array<Maybe<ComponentLandingMenuItem>>>;
   locale?: Maybe<Scalars['String']>;
   localizations?: Maybe<MenuRelationResponseCollection>;
-  main: Scalars['String'];
-  publishedAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
 
 
-export type MenuLocalizationsArgs = {
-  publicationState?: InputMaybe<PublicationState>;
+export type MenuItemsArgs = {
+  filters?: InputMaybe<ComponentLandingMenuItemFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 export type MenuEntity = {
@@ -310,9 +545,7 @@ export type MenuEntityResponse = {
 };
 
 export type MenuInput = {
-  blog?: InputMaybe<Scalars['String']>;
-  main?: InputMaybe<Scalars['String']>;
-  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  items?: InputMaybe<Array<InputMaybe<ComponentLandingMenuItemInput>>>;
 };
 
 export type MenuRelationResponseCollection = {
@@ -324,16 +557,25 @@ export type Mutation = {
   __typename?: 'Mutation';
   /** Change user password. Confirm with the current password. */
   changePassword?: Maybe<UsersPermissionsLoginPayload>;
-  createMainPageLocalization?: Maybe<MainPageEntityResponse>;
+  createAboutLocalization?: Maybe<AboutEntityResponse>;
+  createBlogLocalization?: Maybe<BlogEntityResponse>;
+  createHeroLocalization?: Maybe<HeroEntityResponse>;
   createMenuLocalization?: Maybe<MenuEntityResponse>;
+  createPost?: Maybe<PostEntityResponse>;
+  createPostLocalization?: Maybe<PostEntityResponse>;
+  createProjectLocalization?: Maybe<ProjectEntityResponse>;
   createUploadFile?: Maybe<UploadFileEntityResponse>;
   createUploadFolder?: Maybe<UploadFolderEntityResponse>;
   /** Create a new role */
   createUsersPermissionsRole?: Maybe<UsersPermissionsCreateRolePayload>;
   /** Create a new user */
   createUsersPermissionsUser: UsersPermissionsUserEntityResponse;
-  deleteMainPage?: Maybe<MainPageEntityResponse>;
+  deleteAbout?: Maybe<AboutEntityResponse>;
+  deleteBlog?: Maybe<BlogEntityResponse>;
+  deleteHero?: Maybe<HeroEntityResponse>;
   deleteMenu?: Maybe<MenuEntityResponse>;
+  deletePost?: Maybe<PostEntityResponse>;
+  deleteProject?: Maybe<ProjectEntityResponse>;
   deleteUploadFile?: Maybe<UploadFileEntityResponse>;
   deleteUploadFolder?: Maybe<UploadFolderEntityResponse>;
   /** Delete an existing role */
@@ -351,9 +593,13 @@ export type Mutation = {
   removeFile?: Maybe<UploadFileEntityResponse>;
   /** Reset user password. Confirm with a code (resetToken from forgotPassword) */
   resetPassword?: Maybe<UsersPermissionsLoginPayload>;
+  updateAbout?: Maybe<AboutEntityResponse>;
+  updateBlog?: Maybe<BlogEntityResponse>;
   updateFileInfo: UploadFileEntityResponse;
-  updateMainPage?: Maybe<MainPageEntityResponse>;
+  updateHero?: Maybe<HeroEntityResponse>;
   updateMenu?: Maybe<MenuEntityResponse>;
+  updatePost?: Maybe<PostEntityResponse>;
+  updateProject?: Maybe<ProjectEntityResponse>;
   updateUploadFile?: Maybe<UploadFileEntityResponse>;
   updateUploadFolder?: Maybe<UploadFolderEntityResponse>;
   /** Update an existing role */
@@ -371,8 +617,22 @@ export type MutationChangePasswordArgs = {
 };
 
 
-export type MutationCreateMainPageLocalizationArgs = {
-  data?: InputMaybe<MainPageInput>;
+export type MutationCreateAboutLocalizationArgs = {
+  data?: InputMaybe<AboutInput>;
+  id?: InputMaybe<Scalars['ID']>;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+
+export type MutationCreateBlogLocalizationArgs = {
+  data?: InputMaybe<BlogInput>;
+  id?: InputMaybe<Scalars['ID']>;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+
+export type MutationCreateHeroLocalizationArgs = {
+  data?: InputMaybe<HeroInput>;
   id?: InputMaybe<Scalars['ID']>;
   locale?: InputMaybe<Scalars['I18NLocaleCode']>;
 };
@@ -380,6 +640,26 @@ export type MutationCreateMainPageLocalizationArgs = {
 
 export type MutationCreateMenuLocalizationArgs = {
   data?: InputMaybe<MenuInput>;
+  id?: InputMaybe<Scalars['ID']>;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+
+export type MutationCreatePostArgs = {
+  data: PostInput;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+
+export type MutationCreatePostLocalizationArgs = {
+  data?: InputMaybe<PostInput>;
+  id?: InputMaybe<Scalars['ID']>;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+
+export type MutationCreateProjectLocalizationArgs = {
+  data?: InputMaybe<ProjectInput>;
   id?: InputMaybe<Scalars['ID']>;
   locale?: InputMaybe<Scalars['I18NLocaleCode']>;
 };
@@ -405,12 +685,33 @@ export type MutationCreateUsersPermissionsUserArgs = {
 };
 
 
-export type MutationDeleteMainPageArgs = {
+export type MutationDeleteAboutArgs = {
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+
+export type MutationDeleteBlogArgs = {
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+
+export type MutationDeleteHeroArgs = {
   locale?: InputMaybe<Scalars['I18NLocaleCode']>;
 };
 
 
 export type MutationDeleteMenuArgs = {
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+
+export type MutationDeletePostArgs = {
+  id: Scalars['ID'];
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+
+export type MutationDeleteProjectArgs = {
   locale?: InputMaybe<Scalars['I18NLocaleCode']>;
 };
 
@@ -475,20 +776,45 @@ export type MutationResetPasswordArgs = {
 };
 
 
+export type MutationUpdateAboutArgs = {
+  data: AboutInput;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+
+export type MutationUpdateBlogArgs = {
+  data: BlogInput;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+
 export type MutationUpdateFileInfoArgs = {
   id: Scalars['ID'];
   info?: InputMaybe<FileInfoInput>;
 };
 
 
-export type MutationUpdateMainPageArgs = {
-  data: MainPageInput;
+export type MutationUpdateHeroArgs = {
+  data: HeroInput;
   locale?: InputMaybe<Scalars['I18NLocaleCode']>;
 };
 
 
 export type MutationUpdateMenuArgs = {
   data: MenuInput;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+
+export type MutationUpdatePostArgs = {
+  data: PostInput;
+  id: Scalars['ID'];
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+
+export type MutationUpdateProjectArgs = {
+  data: ProjectInput;
   locale?: InputMaybe<Scalars['I18NLocaleCode']>;
 };
 
@@ -540,6 +866,120 @@ export type PaginationArg = {
   start?: InputMaybe<Scalars['Int']>;
 };
 
+export type Post = {
+  __typename?: 'Post';
+  createdAt?: Maybe<Scalars['DateTime']>;
+  crys?: Maybe<Scalars['Int']>;
+  evils?: Maybe<Scalars['Int']>;
+  fires?: Maybe<Scalars['Int']>;
+  likes?: Maybe<Scalars['Int']>;
+  locale?: Maybe<Scalars['String']>;
+  localizations?: Maybe<PostRelationResponseCollection>;
+  loves?: Maybe<Scalars['Int']>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  text?: Maybe<Scalars['String']>;
+  title: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+
+export type PostLocalizationsArgs = {
+  filters?: InputMaybe<PostFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type PostEntity = {
+  __typename?: 'PostEntity';
+  attributes?: Maybe<Post>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type PostEntityResponse = {
+  __typename?: 'PostEntityResponse';
+  data?: Maybe<PostEntity>;
+};
+
+export type PostEntityResponseCollection = {
+  __typename?: 'PostEntityResponseCollection';
+  data: Array<PostEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type PostFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<PostFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  crys?: InputMaybe<IntFilterInput>;
+  evils?: InputMaybe<IntFilterInput>;
+  fires?: InputMaybe<IntFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  likes?: InputMaybe<IntFilterInput>;
+  locale?: InputMaybe<StringFilterInput>;
+  localizations?: InputMaybe<PostFiltersInput>;
+  loves?: InputMaybe<IntFilterInput>;
+  not?: InputMaybe<PostFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<PostFiltersInput>>>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  text?: InputMaybe<StringFilterInput>;
+  title?: InputMaybe<StringFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type PostInput = {
+  crys?: InputMaybe<Scalars['Int']>;
+  evils?: InputMaybe<Scalars['Int']>;
+  fires?: InputMaybe<Scalars['Int']>;
+  likes?: InputMaybe<Scalars['Int']>;
+  loves?: InputMaybe<Scalars['Int']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  text?: InputMaybe<Scalars['String']>;
+  title?: InputMaybe<Scalars['String']>;
+};
+
+export type PostRelationResponseCollection = {
+  __typename?: 'PostRelationResponseCollection';
+  data: Array<PostEntity>;
+};
+
+export type Project = {
+  __typename?: 'Project';
+  createdAt?: Maybe<Scalars['DateTime']>;
+  locale?: Maybe<Scalars['String']>;
+  localizations?: Maybe<ProjectRelationResponseCollection>;
+  projects?: Maybe<Array<Maybe<ComponentLandingProjectExample>>>;
+  title: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+
+export type ProjectProjectsArgs = {
+  filters?: InputMaybe<ComponentLandingProjectExampleFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type ProjectEntity = {
+  __typename?: 'ProjectEntity';
+  attributes?: Maybe<Project>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type ProjectEntityResponse = {
+  __typename?: 'ProjectEntityResponse';
+  data?: Maybe<ProjectEntity>;
+};
+
+export type ProjectInput = {
+  projects?: InputMaybe<Array<InputMaybe<ComponentLandingProjectExampleInput>>>;
+  title?: InputMaybe<Scalars['String']>;
+};
+
+export type ProjectRelationResponseCollection = {
+  __typename?: 'ProjectRelationResponseCollection';
+  data: Array<ProjectEntity>;
+};
+
 export enum PublicationState {
   Live = 'LIVE',
   Preview = 'PREVIEW'
@@ -547,11 +987,16 @@ export enum PublicationState {
 
 export type Query = {
   __typename?: 'Query';
+  about?: Maybe<AboutEntityResponse>;
+  blog?: Maybe<BlogEntityResponse>;
+  hero?: Maybe<HeroEntityResponse>;
   i18NLocale?: Maybe<I18NLocaleEntityResponse>;
   i18NLocales?: Maybe<I18NLocaleEntityResponseCollection>;
-  mainPage?: Maybe<MainPageEntityResponse>;
   me?: Maybe<UsersPermissionsMe>;
   menu?: Maybe<MenuEntityResponse>;
+  post?: Maybe<PostEntityResponse>;
+  posts?: Maybe<PostEntityResponseCollection>;
+  project?: Maybe<ProjectEntityResponse>;
   uploadFile?: Maybe<UploadFileEntityResponse>;
   uploadFiles?: Maybe<UploadFileEntityResponseCollection>;
   uploadFolder?: Maybe<UploadFolderEntityResponse>;
@@ -560,6 +1005,21 @@ export type Query = {
   usersPermissionsRoles?: Maybe<UsersPermissionsRoleEntityResponseCollection>;
   usersPermissionsUser?: Maybe<UsersPermissionsUserEntityResponse>;
   usersPermissionsUsers?: Maybe<UsersPermissionsUserEntityResponseCollection>;
+};
+
+
+export type QueryAboutArgs = {
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+
+export type QueryBlogArgs = {
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+
+export type QueryHeroArgs = {
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
 };
 
 
@@ -575,15 +1035,28 @@ export type QueryI18NLocalesArgs = {
 };
 
 
-export type QueryMainPageArgs = {
+export type QueryMenuArgs = {
   locale?: InputMaybe<Scalars['I18NLocaleCode']>;
-  publicationState?: InputMaybe<PublicationState>;
 };
 
 
-export type QueryMenuArgs = {
+export type QueryPostArgs = {
+  id?: InputMaybe<Scalars['ID']>;
   locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+
+export type QueryPostsArgs = {
+  filters?: InputMaybe<PostFiltersInput>;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+  pagination?: InputMaybe<PaginationArg>;
   publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+export type QueryProjectArgs = {
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
 };
 
 
@@ -1039,62 +1512,320 @@ export type UsersPermissionsUserRelationResponseCollection = {
   data: Array<UsersPermissionsUserEntity>;
 };
 
-export type MenuFieldsFragment = { __typename?: 'Menu', main: string, blog: string };
+export type PostQueryVariables = Exact<{
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+  id?: InputMaybe<Scalars['ID']>;
+}>;
 
-export type GetMenuQueryVariables = Exact<{ [key: string]: never; }>;
+
+export type PostQuery = { __typename?: 'Query', post?: { __typename?: 'PostEntityResponse', data?: { __typename?: 'PostEntity', id?: string | null, attributes?: { __typename?: 'Post', title: string, text?: string | null, locale?: string | null, likes?: number | null, fires?: number | null, loves?: number | null, crys?: number | null, evils?: number | null } | null } | null } | null };
+
+export type PostsQueryVariables = Exact<{
+  filters?: InputMaybe<PostFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>> | InputMaybe<Scalars['String']>>;
+}>;
 
 
-export type GetMenuQuery = { __typename?: 'Query', menu?: { __typename?: 'MenuEntityResponse', data?: { __typename?: 'MenuEntity', attributes?: { __typename?: 'Menu', main: string, blog: string, localizations?: { __typename?: 'MenuRelationResponseCollection', data: Array<{ __typename?: 'MenuEntity', attributes?: { __typename?: 'Menu', locale?: string | null, main: string, blog: string } | null }> } | null } | null } | null } | null };
+export type PostsQuery = { __typename?: 'Query', posts?: { __typename?: 'PostEntityResponseCollection', data: Array<{ __typename?: 'PostEntity', id?: string | null, attributes?: { __typename?: 'Post', title: string, text?: string | null, locale?: string | null, likes?: number | null, fires?: number | null, loves?: number | null, crys?: number | null, evils?: number | null } | null }> } | null };
 
-export const MenuFieldsFragmentDoc = gql`
-    fragment MenuFields on Menu {
-  main
-  blog
-}
-    `;
-export const GetMenuDocument = gql`
-    query GetMenu {
-  menu {
+export type LocalizationQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type LocalizationQuery = { __typename?: 'Query', i18NLocales?: { __typename?: 'I18NLocaleEntityResponseCollection', data: Array<{ __typename?: 'I18NLocaleEntity', attributes?: { __typename?: 'I18NLocale', name?: string | null, code?: string | null } | null }> } | null };
+
+export type LandingQueryVariables = Exact<{
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+}>;
+
+
+export type LandingQuery = { __typename?: 'Query', blog?: { __typename?: 'BlogEntityResponse', data?: { __typename?: 'BlogEntity', id?: string | null, attributes?: { __typename?: 'Blog', title?: string | null, tip?: string | null, lastPostsTitle?: string | null, locale?: string | null } | null } | null } | null, about?: { __typename?: 'AboutEntityResponse', data?: { __typename?: 'AboutEntity', id?: string | null, attributes?: { __typename?: 'About', title: string, myStack: string, stack: string, locale?: string | null, stackImages: Array<{ __typename?: 'ComponentLandingImageName', id: string } | null>, workExp?: Array<{ __typename?: 'ComponentLandingWorkExp', id: string, workName: string, from: string, to: string, objectives?: string | null } | null> | null } | null } | null } | null, hero?: { __typename?: 'HeroEntityResponse', data?: { __typename?: 'HeroEntity', id?: string | null, attributes?: { __typename?: 'Hero', name: string, toContacts: string, toWorks: string, down: string, consoleTexts?: Array<{ __typename?: 'ComponentLandingTypingText', id: string, openCommand: string, asciiImage?: string | null } | null> | null, socialLinks?: Array<{ __typename?: 'ComponentLandingSocialLink', id: string, iconName: string } | null> | null } | null } | null } | null, project?: { __typename?: 'ProjectEntityResponse', data?: { __typename?: 'ProjectEntity', id?: string | null, attributes?: { __typename?: 'Project', title: string, locale?: string | null, projects?: Array<{ __typename?: 'ComponentLandingProjectExample', id: string, name?: string | null, hrefSource?: string | null, hrefPreview?: string | null } | null> | null } | null } | null } | null };
+
+export type MenuQueryVariables = Exact<{
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+}>;
+
+
+export type MenuQuery = { __typename?: 'Query', menu?: { __typename?: 'MenuEntityResponse', data?: { __typename?: 'MenuEntity', id?: string | null, attributes?: { __typename?: 'Menu', locale?: string | null, items?: Array<{ __typename?: 'ComponentLandingMenuItem', id: string, title: string, href: string } | null> | null } | null } | null } | null };
+
+
+export const PostDocument = gql`
+    query Post($locale: I18NLocaleCode, $id: ID) {
+  post(locale: $locale, id: $id) {
     data {
+      id
       attributes {
-        ...MenuFields
-        localizations {
-          data {
-            attributes {
-              locale
-              ...MenuFields
-            }
-          }
-        }
+        title
+        text
+        locale
+        likes
+        fires
+        loves
+        crys
+        evils
       }
     }
   }
 }
-    ${MenuFieldsFragmentDoc}`;
+    `;
 
 /**
- * __useGetMenuQuery__
+ * __usePostQuery__
  *
- * To run a query within a React component, call `useGetMenuQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetMenuQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `usePostQuery` and pass it any options that fit your needs.
+ * When your component renders, `usePostQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useGetMenuQuery({
+ * const { data, loading, error } = usePostQuery({
+ *   variables: {
+ *      locale: // value for 'locale'
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function usePostQuery(baseOptions?: Apollo.QueryHookOptions<PostQuery, PostQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<PostQuery, PostQueryVariables>(PostDocument, options);
+      }
+export function usePostLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<PostQuery, PostQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<PostQuery, PostQueryVariables>(PostDocument, options);
+        }
+export type PostQueryHookResult = ReturnType<typeof usePostQuery>;
+export type PostLazyQueryHookResult = ReturnType<typeof usePostLazyQuery>;
+export type PostQueryResult = Apollo.QueryResult<PostQuery, PostQueryVariables>;
+export const PostsDocument = gql`
+    query Posts($filters: PostFiltersInput, $pagination: PaginationArg, $sort: [String]) {
+  posts(filters: $filters, pagination: $pagination, sort: $sort) {
+    data {
+      id
+      attributes {
+        title
+        text
+        locale
+        likes
+        fires
+        loves
+        crys
+        evils
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __usePostsQuery__
+ *
+ * To run a query within a React component, call `usePostsQuery` and pass it any options that fit your needs.
+ * When your component renders, `usePostsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = usePostsQuery({
+ *   variables: {
+ *      filters: // value for 'filters'
+ *      pagination: // value for 'pagination'
+ *      sort: // value for 'sort'
+ *   },
+ * });
+ */
+export function usePostsQuery(baseOptions?: Apollo.QueryHookOptions<PostsQuery, PostsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<PostsQuery, PostsQueryVariables>(PostsDocument, options);
+      }
+export function usePostsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<PostsQuery, PostsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<PostsQuery, PostsQueryVariables>(PostsDocument, options);
+        }
+export type PostsQueryHookResult = ReturnType<typeof usePostsQuery>;
+export type PostsLazyQueryHookResult = ReturnType<typeof usePostsLazyQuery>;
+export type PostsQueryResult = Apollo.QueryResult<PostsQuery, PostsQueryVariables>;
+export const LocalizationDocument = gql`
+    query Localization {
+  i18NLocales {
+    data {
+      attributes {
+        name
+        code
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useLocalizationQuery__
+ *
+ * To run a query within a React component, call `useLocalizationQuery` and pass it any options that fit your needs.
+ * When your component renders, `useLocalizationQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useLocalizationQuery({
  *   variables: {
  *   },
  * });
  */
-export function useGetMenuQuery(baseOptions?: Apollo.QueryHookOptions<GetMenuQuery, GetMenuQueryVariables>) {
+export function useLocalizationQuery(baseOptions?: Apollo.QueryHookOptions<LocalizationQuery, LocalizationQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetMenuQuery, GetMenuQueryVariables>(GetMenuDocument, options);
+        return Apollo.useQuery<LocalizationQuery, LocalizationQueryVariables>(LocalizationDocument, options);
       }
-export function useGetMenuLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetMenuQuery, GetMenuQueryVariables>) {
+export function useLocalizationLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<LocalizationQuery, LocalizationQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetMenuQuery, GetMenuQueryVariables>(GetMenuDocument, options);
+          return Apollo.useLazyQuery<LocalizationQuery, LocalizationQueryVariables>(LocalizationDocument, options);
         }
-export type GetMenuQueryHookResult = ReturnType<typeof useGetMenuQuery>;
-export type GetMenuLazyQueryHookResult = ReturnType<typeof useGetMenuLazyQuery>;
-export type GetMenuQueryResult = Apollo.QueryResult<GetMenuQuery, GetMenuQueryVariables>;
+export type LocalizationQueryHookResult = ReturnType<typeof useLocalizationQuery>;
+export type LocalizationLazyQueryHookResult = ReturnType<typeof useLocalizationLazyQuery>;
+export type LocalizationQueryResult = Apollo.QueryResult<LocalizationQuery, LocalizationQueryVariables>;
+export const LandingDocument = gql`
+    query Landing($locale: I18NLocaleCode) {
+  blog(locale: $locale) {
+    data {
+      id
+      attributes {
+        title
+        tip
+        lastPostsTitle
+        locale
+      }
+    }
+  }
+  about(locale: $locale) {
+    data {
+      id
+      attributes {
+        title
+        myStack
+        stackImages(sort: ["id"]) {
+          id
+        }
+        stack
+        workExp(sort: ["id"]) {
+          id
+          workName
+          from
+          to
+          objectives
+        }
+        locale
+      }
+    }
+  }
+  hero(locale: $locale) {
+    data {
+      id
+      attributes {
+        name
+        toContacts
+        toWorks
+        down
+        consoleTexts {
+          id
+          openCommand
+          asciiImage
+        }
+        socialLinks {
+          id
+          iconName
+        }
+      }
+    }
+  }
+  project(locale: $locale) {
+    data {
+      id
+      attributes {
+        title
+        projects {
+          id
+          name
+          hrefSource
+          hrefPreview
+        }
+        locale
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useLandingQuery__
+ *
+ * To run a query within a React component, call `useLandingQuery` and pass it any options that fit your needs.
+ * When your component renders, `useLandingQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useLandingQuery({
+ *   variables: {
+ *      locale: // value for 'locale'
+ *   },
+ * });
+ */
+export function useLandingQuery(baseOptions?: Apollo.QueryHookOptions<LandingQuery, LandingQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<LandingQuery, LandingQueryVariables>(LandingDocument, options);
+      }
+export function useLandingLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<LandingQuery, LandingQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<LandingQuery, LandingQueryVariables>(LandingDocument, options);
+        }
+export type LandingQueryHookResult = ReturnType<typeof useLandingQuery>;
+export type LandingLazyQueryHookResult = ReturnType<typeof useLandingLazyQuery>;
+export type LandingQueryResult = Apollo.QueryResult<LandingQuery, LandingQueryVariables>;
+export const MenuDocument = gql`
+    query Menu($locale: I18NLocaleCode) {
+  menu(locale: $locale) {
+    data {
+      id
+      attributes {
+        items(sort: ["id"]) {
+          id
+          title
+          href
+        }
+        locale
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useMenuQuery__
+ *
+ * To run a query within a React component, call `useMenuQuery` and pass it any options that fit your needs.
+ * When your component renders, `useMenuQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useMenuQuery({
+ *   variables: {
+ *      locale: // value for 'locale'
+ *   },
+ * });
+ */
+export function useMenuQuery(baseOptions?: Apollo.QueryHookOptions<MenuQuery, MenuQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<MenuQuery, MenuQueryVariables>(MenuDocument, options);
+      }
+export function useMenuLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<MenuQuery, MenuQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<MenuQuery, MenuQueryVariables>(MenuDocument, options);
+        }
+export type MenuQueryHookResult = ReturnType<typeof useMenuQuery>;
+export type MenuLazyQueryHookResult = ReturnType<typeof useMenuLazyQuery>;
+export type MenuQueryResult = Apollo.QueryResult<MenuQuery, MenuQueryVariables>;
