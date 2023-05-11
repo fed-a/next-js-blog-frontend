@@ -1,5 +1,4 @@
 import Navigation from '@/components/navigation';
-import { ThemeToggle } from '@/components/theme-toggle';
 
 import { i18n } from '@/lib/i18n';
 import { Providers } from '@/lib/providers';
@@ -35,7 +34,6 @@ export default function RootLayout({ children, params }: Params & Children) {
       <body>
         <Providers>
           <Navigation lang={lang} />
-          <ThemeToggle />
           {children}
         </Providers>
       </body>

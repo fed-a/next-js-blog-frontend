@@ -1,5 +1,4 @@
 import { Button, ButtonLink, Link, Typography } from '@/components/core';
-import { Switch } from '@/components/core/switch';
 import { FloatingBlock } from '@/components/floating-block';
 import { Marquee } from '@/components/marquee';
 
@@ -70,7 +69,8 @@ function UiKit({ params }: Params) {
       </FloatingBlock>
       <Typography type="h1">Код</Typography>
       <Typography type="h1">Свич</Typography>
-      <Switch />
+      Не работает на сервере
+      {/* <ThemeSwitch /> */}
       <Typography type="h1">Бегущая строка</Typography>
       <Marquee speed={8} repeatTimes={6}>
         <Typography type="marquee">TestTestTestTest TestTes</Typography>
@@ -81,7 +81,6 @@ function UiKit({ params }: Params) {
       <Marquee speed={4} repeatTimes={6}>
         <Typography type="marquee">TestTestTestTest TestTes</Typography>
       </Marquee>
-
       <div className="h-[2000px]"></div>
     </>
   );

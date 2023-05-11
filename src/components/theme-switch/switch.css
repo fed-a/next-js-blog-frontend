@@ -1,0 +1,7 @@
+.af-theme-switch {
+  @apply h-6 w-16 bg-[url(/assets/icons/sun.svg)] bg-contain bg-center bg-no-repeat;
+}
+
+[data-theme='dark'] .af-theme-switch {
+  @apply bg-[url(/assets/icons/moon-stars.svg)];
+}

@@ -64,5 +64,5 @@
     "import/prefer-default-export": "off",
     "import/extensions": "off"
   },
-  "ignorePatterns": ["src/gql/graphql.ts", "/*.js"]
+  "ignorePatterns": ["src/gql/graphql.ts", "/*.js", "src/components/core/icon/load-icons.js"]
 }

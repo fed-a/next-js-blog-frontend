@@ -3,11 +3,7 @@
 }
 
 .af-link__line {
-  @apply absolute bottom-0 left-0 h-[0.0625em] w-full border-none;
-}
-
-.af-link__line {
-  @apply bg-black;
+  @apply absolute bottom-0 left-0 h-[0.125em] w-full border-none bg-black;
 }
 
 [data-theme='dark'] .af-link__line {

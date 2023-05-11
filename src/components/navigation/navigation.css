@@ -1,0 +1,16 @@
+.af-nav {
+  @apply container absolute right-[50%] mt-12 hidden translate-x-1/2 items-center justify-between sm:flex;
+}
+
+.af-nav__logo {
+  background-image: url('/assets/icons/logo-dark.svg');
+  @apply aspect-[41_/_48] h-12 w-auto bg-contain bg-center bg-no-repeat;
+}
+
+[data-theme='dark'] .af-nav__logo {
+  background-image: url('/assets/icons/logo-light.svg');
+}
+
+.af-nav ul {
+  @apply flex gap-8;
+}

@@ -1,0 +1,125 @@
+
+.icon {
+  mask-repeat: no-repeat;
+  mask-size: cover;
+}
+
+
+.i-arrow-down-mini {
+  mask-image: url('/assets/icons/arrow-down-mini.svg');
+  @apply icon;
+}
+
+
+.i-arrow-down {
+  mask-image: url('/assets/icons/arrow-down.svg');
+  @apply icon;
+}
+
+
+.i-brand-github {
+  mask-image: url('/assets/icons/brand-github.svg');
+  @apply icon;
+}
+
+
+.i-brand-instagram {
+  mask-image: url('/assets/icons/brand-instagram.svg');
+  @apply icon;
+}
+
+
+.i-brand-linkedin {
+  mask-image: url('/assets/icons/brand-linkedin.svg');
+  @apply icon;
+}
+
+
+.i-brand-mailgun {
+  mask-image: url('/assets/icons/brand-mailgun.svg');
+  @apply icon;
+}
+
+
+.i-brand-telegram {
+  mask-image: url('/assets/icons/brand-telegram.svg');
+  @apply icon;
+}
+
+
+.i-download {
+  mask-image: url('/assets/icons/download.svg');
+  @apply icon;
+}
+
+
+.i-link {
+  mask-image: url('/assets/icons/link.svg');
+  @apply icon;
+}
+
+
+.i-logo-dark {
+  mask-image: url('/assets/icons/logo-dark.svg');
+  @apply icon;
+}
+
+
+.i-logo-light {
+  mask-image: url('/assets/icons/logo-light.svg');
+  @apply icon;
+}
+
+
+.i-menu2 {
+  mask-image: url('/assets/icons/menu-2.svg');
+  @apply icon;
+}
+
+
+.i-moon-stars {
+  mask-image: url('/assets/icons/moon-stars.svg');
+  @apply icon;
+}
+
+
+.i-moon {
+  mask-image: url('/assets/icons/moon.svg');
+  @apply icon;
+}
+
+
+.i-send {
+  mask-image: url('/assets/icons/send.svg');
+  @apply icon;
+}
+
+
+.i-sort-ascending {
+  mask-image: url('/assets/icons/sort-ascending.svg');
+  @apply icon;
+}
+
+
+.i-sort-descending {
+  mask-image: url('/assets/icons/sort-descending.svg');
+  @apply icon;
+}
+
+
+.i-sun {
+  mask-image: url('/assets/icons/sun.svg');
+  @apply icon;
+}
+
+
+.i-thumb-up {
+  mask-image: url('/assets/icons/thumb-up.svg');
+  @apply icon;
+}
+
+
+.i-user {
+  mask-image: url('/assets/icons/user.svg');
+  @apply icon;
+}

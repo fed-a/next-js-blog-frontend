@@ -1,10 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
 import React from 'react';
 
-export function YandexMetricaProvider({ children }: { children: React.ReactNode }) {
+export default function YandexMetricaProvider(): JSX.Element | null {
+  if (typeof window === 'undefined') {
+    return null;
+  }
   return (
-    <>
-      {children}
+    <div>
       <script
         type="text/javascript"
         dangerouslySetInnerHTML={{
@@ -22,17 +24,18 @@ export function YandexMetricaProvider({ children }: { children: React.ReactNode 
             });
             `,
         }}
-      />
-
+      ></script>
       <noscript>
         <div>
           <img
             src="https://mc.yandex.ru/watch/93530946"
+            loading="lazy"
             style={{ position: 'absolute', left: '-9999px' }}
+            aria-hidden
             alt=""
           />
         </div>
       </noscript>
-    </>
+    </div>
   );
 }
