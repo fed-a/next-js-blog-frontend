@@ -2,8 +2,9 @@ import React from 'react';
 
 import { PostsQuery } from '@/gql';
 
-import { Locale } from '@/lib/i18n';
 import { Link } from '@/components/core';
+
+import { Locale } from '@/lib/i18n';
 
 interface PostCardProps {
   data: NonNullable<PostsQuery['posts']>['data'][0]['attributes'] | null;
