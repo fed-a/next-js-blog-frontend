@@ -2,12 +2,12 @@ import React from 'react';
 
 import { Locale } from '@/lib/i18n';
 
-interface LocaleParam {
+export interface LocaleParam {
   lang: Locale;
 }
 
-interface PostParam {
-  post: string;
+export interface PostParam {
+  slug: string;
 }
 
 export interface Params {

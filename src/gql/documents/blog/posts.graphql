@@ -1,17 +1,47 @@
-query Posts($filters: PostFiltersInput, $pagination: PaginationArg, $sort: [String]) {
-  posts(filters: $filters, pagination: $pagination, sort: $sort) {
+query Posts(
+  $filters: PostFiltersInput
+  $pagination: PaginationArg
+  $sort: [String]
+  $locale: I18NLocaleCode
+) {
+  posts(filters: $filters, pagination: $pagination, sort: $sort, locale: $locale) {
     data {
       id
       attributes {
         title
-        text
+        description
+        metaTitle
+        slug
         locale
-        likes
-        fires
-        loves
-        crys
-        evils
+        thumbnail {
+          ...ImageFragment
+        }
+        content {
+          __typename
+          ... on ComponentDynamicContentText {
+            id
+            text
+          }
+          ... on ComponentDynamicContentImage {
+            id
+            media {
+              ...ImageFragment
+            }
+          }
+        }
       }
+    }
+  }
+}
+
+fragment ImageFragment on UploadFileEntityResponse {
+  data {
+    attributes {
+      name
+      alternativeText
+      blurhash
+      formats
+      url
     }
   }
 }

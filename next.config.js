@@ -1,14 +1,25 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
-    appDir: true,
+    mdxRs: true,
   },
-  env: {
-    STRAPI_ENDPOINT: process.env.STRAPI_ENDPOINT,
+  images: {
+    domains: [process.env.STRAPI_HOSTNAME, 'localhost'],
+    loader: 'default',
   },
   eslint: {
     ignoreDuringBuilds: true,
   },
 };
 
-module.exports = nextConfig;
+console.log({ hostname: process.env.STRAPI_HOSTNAME });
+
+const withMDX = require('@next/mdx')({
+  options: {
+    remarkPlugins: [],
+    rehypePlugins: [],
+    // If you use `MDXProvider`, uncomment the following line.
+    providerImportSource: '@mdx-js/react',
+  },
+});
+module.exports = withMDX(nextConfig);

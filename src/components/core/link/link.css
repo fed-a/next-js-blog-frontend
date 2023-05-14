@@ -9,3 +9,8 @@
 [data-theme='dark'] .af-link__line {
   @apply bg-white;
 }
+
+.af-link.active,
+.af-link.disabled {
+  @apply text-gray;
+}

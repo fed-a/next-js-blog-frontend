@@ -5,6 +5,7 @@ import LinkNext from 'next/link';
 import React, { memo, useCallback, useEffect, useMemo, useRef } from 'react';
 
 import { Locale } from '@/lib/i18n';
+import { cn } from '@/lib/utils';
 
 import { addLocale, getLinkAnimeInParams, getLinkAnimeOutParams } from './lib';
 import './link.css';
@@ -15,15 +16,26 @@ interface LinkProps {
   children: React.ReactNode;
   linkIcon?: boolean;
   underlined?: 'always' | 'hover' | 'never';
+  active?: boolean;
+  disabled?: boolean;
 }
 
 function LinkComponent(props: LinkProps) {
-  const { href, locale, children, linkIcon, underlined: underline = 'never' } = props;
+  const {
+    href,
+    locale,
+    children,
+    linkIcon,
+    underlined: underline = 'never',
+    active,
+    disabled,
+  } = props;
   const lineRef = useRef<HTMLHRElement>(null);
   const lineAnimeIn = useRef<AnimeInstance | null>(null);
   const lineAnimeOut = useRef<AnimeInstance | null>(null);
 
   const isUnderlinedOnHover = useMemo(() => underline === 'hover', [underline]);
+  const isNeverUnderlined = useMemo(() => underline === 'never', [underline]);
 
   useEffect(() => {
     if (isUnderlinedOnHover) {
@@ -47,9 +59,26 @@ function LinkComponent(props: LinkProps) {
     }
   }, [isUnderlinedOnHover]);
 
+  const className = useMemo(
+    () =>
+      cn('af-link', {
+        active,
+        disabled,
+      }),
+    [active, disabled],
+  );
+
+  if (disabled) {
+    return (
+      <span className={className} aria-disabled>
+        {children}
+      </span>
+    );
+  }
+
   return (
     <LinkNext
-      className="af-link"
+      className={className}
       href={addLocale(href, locale)}
       locale={locale}
       onMouseEnter={handleMouseIn}
@@ -73,11 +102,13 @@ function LinkComponent(props: LinkProps) {
           />
         </svg>
       )}
-      <hr
-        className="af-link__line"
-        ref={lineRef}
-        style={{ width: underline === 'always' ? '100%' : '0%' }}
-      />
+      {!isNeverUnderlined && (
+        <hr
+          className="af-link__line"
+          ref={lineRef}
+          style={{ width: underline === 'always' ? '100%' : '0%' }}
+        />
+      )}
     </LinkNext>
   );
 }

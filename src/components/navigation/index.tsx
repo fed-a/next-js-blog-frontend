@@ -1,12 +1,9 @@
-'use client';
-
-import { Link } from '@/components/core';
-
 import { Locale } from '@/lib/i18n';
 import { routes } from '@/lib/routes';
 
 import { ThemeSwitch } from '../theme-switch';
 
+import { NavLink } from './nav-link';
 import './navigation.css';
 
 interface NavigationProps {
@@ -15,6 +12,7 @@ interface NavigationProps {
 
 function Navigation(props: NavigationProps) {
   const { lang } = props;
+
   return (
     <div className="af-nav">
       <div className="af-nav__logo" />
@@ -23,19 +21,19 @@ function Navigation(props: NavigationProps) {
           <ThemeSwitch />
         </li>
         <li>
-          <Link href={routes.uiKit} locale={lang} underlined="hover">
+          <NavLink route={routes.uiKit} locale={lang}>
             Ui-kit
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link href={routes.main} locale={lang} underlined="hover">
+          <NavLink route={routes.main} locale={lang}>
             Main
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link href={routes.blog} locale={lang} underlined="hover">
+          <NavLink route={routes.blog} locale={lang}>
             Blog
-          </Link>
+          </NavLink>
         </li>
       </ul>
     </div>

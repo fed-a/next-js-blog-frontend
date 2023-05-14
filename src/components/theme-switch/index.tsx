@@ -19,6 +19,7 @@ function ThemeSwitchComponent() {
     setTheme(theme === 'dark' ? 'light' : 'dark');
   }, [setTheme, theme]);
 
+  // TODO: определение темы при загрузке
   if (!isMounted) {
     return (
       <div className="h-6 w-6">

@@ -1,10 +1,20 @@
+import { Metadata } from 'next';
+
 import { Button, ButtonLink, Link, Typography } from '@/components/core';
 import { FloatingBlock } from '@/components/floating-block';
+import { Markdown } from '@/components/markdown';
 import { Marquee } from '@/components/marquee';
 
 import { Params } from '../types';
 
-function UiKit({ params }: Params) {
+export const metadata: Metadata = {
+  title: 'Ui-kit',
+};
+
+async function UiKit({ params }: Params) {
+  if (process.env.NODE_ENV !== 'development') {
+    return <></>;
+  }
   return (
     <>
       <Typography type="h1">Тексты</Typography>
@@ -67,8 +77,9 @@ function UiKit({ params }: Params) {
       <FloatingBlock block={<>Картинка2</>} position="center">
         <div className="h-72 w-72 bg-gray"></div>
       </FloatingBlock>
-      <Typography type="h1">Код</Typography>
-      <Typography type="h1">Свич</Typography>
+      <Typography type="h1">Разметка</Typography>
+      <Markdown>### Разметка</Markdown>
+      <Typography type="h1">Свич темы</Typography>
       Не работает на сервере
       {/* <ThemeSwitch /> */}
       <Typography type="h1">Бегущая строка</Typography>

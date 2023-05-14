@@ -31,10 +31,19 @@ export default function RootLayout({ children, params }: Params & Children) {
 
   return (
     <html lang={lang} suppressHydrationWarning>
+      <head>
+        <link
+          rel="preload"
+          href="/assets/fonts/Inter-Regular.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin=""
+        />
+      </head>
       <body>
         <Providers>
           <Navigation lang={lang} />
-          {children}
+          <div className="af-wrapper">{children}</div>
         </Providers>
       </body>
     </html>

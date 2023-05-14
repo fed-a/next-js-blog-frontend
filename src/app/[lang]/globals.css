@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+/* _________________ */
+/* ______VARS_______ */
+/* _________________ */
+
 :root {
   --black: #0f101c;
   --white: #f0f0ff;
@@ -10,6 +14,10 @@
   --darker-gray: #292e3a;
   --gray: #4c515e;
 }
+
+/* _________________ */
+/* _____THEMES______ */
+/* _________________ */
 
 [data-theme='dark'],
 [data-theme='dark'] body {
@@ -25,6 +33,10 @@ body {
 path:not([stroke]) {
   @apply stroke-black;
 }
+
+/* _________________ */
+/* ______BASE_______ */
+/* _________________ */
 
 @layer base {
   html {
@@ -96,22 +108,30 @@ path:not([stroke]) {
       font-size: 1rem;
     }
   }
+
+  @media screen and (max-width: 360px) {
+    h1 {
+      font-size: 2rem;
+    }
+    h2 {
+      font-size: 1.5rem;
+    }
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-size: 1rem;
+    }
+  }
+
+  .af-wrapper {
+    @apply mt-28;
+  }
 }
 
-@media screen and (max-width: 360px) {
-  h1 {
-    font-size: 2rem;
-  }
-  h2 {
-    font-size: 1.5rem;
-  }
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-size: 1rem;
-  }
-}
+/* _________________ */
+/* ______FONTS______ */
+/* _________________ */
 
 @font-face {
   font-family: 'Infer';

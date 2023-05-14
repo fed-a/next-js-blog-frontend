@@ -16,6 +16,7 @@ export type Scalars = {
   DateTime: any;
   I18NLocaleCode: any;
   JSON: any;
+  PostContentDynamicZoneInput: any;
   Upload: any;
 };
 
@@ -123,6 +124,18 @@ export type BooleanFilterInput = {
   null?: InputMaybe<Scalars['Boolean']>;
   or?: InputMaybe<Array<InputMaybe<Scalars['Boolean']>>>;
   startsWith?: InputMaybe<Scalars['Boolean']>;
+};
+
+export type ComponentDynamicContentImage = {
+  __typename?: 'ComponentDynamicContentImage';
+  id: Scalars['ID'];
+  media: UploadFileEntityResponse;
+};
+
+export type ComponentDynamicContentText = {
+  __typename?: 'ComponentDynamicContentText';
+  id: Scalars['ID'];
+  text: Scalars['String'];
 };
 
 export type ComponentLandingImageName = {
@@ -334,6 +347,12 @@ export enum Enum_Componentsharedmetasocial_Socialnetwork {
   Twitter = 'Twitter'
 }
 
+export type Error = {
+  __typename?: 'Error';
+  code: Scalars['String'];
+  message?: Maybe<Scalars['String']>;
+};
+
 export type FileInfoInput = {
   alternativeText?: InputMaybe<Scalars['String']>;
   caption?: InputMaybe<Scalars['String']>;
@@ -364,7 +383,7 @@ export type FloatFilterInput = {
   startsWith?: InputMaybe<Scalars['Float']>;
 };
 
-export type GenericMorph = About | Blog | ComponentLandingImageName | ComponentLandingMenuItem | ComponentLandingProjectExample | ComponentLandingSocialLink | ComponentLandingTypingText | ComponentLandingWorkExp | ComponentSharedMetaSocial | ComponentSharedSeo | Hero | I18NLocale | Menu | Post | Project | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+export type GenericMorph = About | Blog | ComponentDynamicContentImage | ComponentDynamicContentText | ComponentLandingImageName | ComponentLandingMenuItem | ComponentLandingProjectExample | ComponentLandingSocialLink | ComponentLandingTypingText | ComponentLandingWorkExp | ComponentSharedMetaSocial | ComponentSharedSeo | Hero | I18NLocale | Menu | Post | Project | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
 
 export type Hero = {
   __typename?: 'Hero';
@@ -878,16 +897,15 @@ export type PaginationArg = {
 
 export type Post = {
   __typename?: 'Post';
+  content: Array<Maybe<PostContentDynamicZone>>;
   createdAt?: Maybe<Scalars['DateTime']>;
-  crys?: Maybe<Scalars['Int']>;
-  evils?: Maybe<Scalars['Int']>;
-  fires?: Maybe<Scalars['Int']>;
-  likes?: Maybe<Scalars['Int']>;
+  description: Scalars['String'];
   locale?: Maybe<Scalars['String']>;
   localizations?: Maybe<PostRelationResponseCollection>;
-  loves?: Maybe<Scalars['Int']>;
+  metaTitle: Scalars['String'];
   publishedAt?: Maybe<Scalars['DateTime']>;
-  text?: Maybe<Scalars['String']>;
+  slug: Scalars['String'];
+  thumbnail?: Maybe<UploadFileEntityResponse>;
   title: Scalars['String'];
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
@@ -899,6 +917,8 @@ export type PostLocalizationsArgs = {
   publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
+
+export type PostContentDynamicZone = ComponentDynamicContentImage | ComponentDynamicContentText | Error;
 
 export type PostEntity = {
   __typename?: 'PostEntity';
@@ -920,30 +940,26 @@ export type PostEntityResponseCollection = {
 export type PostFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<PostFiltersInput>>>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
-  crys?: InputMaybe<IntFilterInput>;
-  evils?: InputMaybe<IntFilterInput>;
-  fires?: InputMaybe<IntFilterInput>;
+  description?: InputMaybe<StringFilterInput>;
   id?: InputMaybe<IdFilterInput>;
-  likes?: InputMaybe<IntFilterInput>;
   locale?: InputMaybe<StringFilterInput>;
   localizations?: InputMaybe<PostFiltersInput>;
-  loves?: InputMaybe<IntFilterInput>;
+  metaTitle?: InputMaybe<StringFilterInput>;
   not?: InputMaybe<PostFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<PostFiltersInput>>>;
   publishedAt?: InputMaybe<DateTimeFilterInput>;
-  text?: InputMaybe<StringFilterInput>;
+  slug?: InputMaybe<StringFilterInput>;
   title?: InputMaybe<StringFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
 };
 
 export type PostInput = {
-  crys?: InputMaybe<Scalars['Int']>;
-  evils?: InputMaybe<Scalars['Int']>;
-  fires?: InputMaybe<Scalars['Int']>;
-  likes?: InputMaybe<Scalars['Int']>;
-  loves?: InputMaybe<Scalars['Int']>;
+  content?: InputMaybe<Array<Scalars['PostContentDynamicZoneInput']>>;
+  description?: InputMaybe<Scalars['String']>;
+  metaTitle?: InputMaybe<Scalars['String']>;
   publishedAt?: InputMaybe<Scalars['DateTime']>;
-  text?: InputMaybe<Scalars['String']>;
+  slug?: InputMaybe<Scalars['String']>;
+  thumbnail?: InputMaybe<Scalars['ID']>;
   title?: InputMaybe<Scalars['String']>;
 };
 
@@ -1528,16 +1544,19 @@ export type PostQueryVariables = Exact<{
 }>;
 
 
-export type PostQuery = { __typename?: 'Query', post?: { __typename?: 'PostEntityResponse', data?: { __typename?: 'PostEntity', id?: string | null, attributes?: { __typename?: 'Post', title: string, text?: string | null, locale?: string | null, likes?: number | null, fires?: number | null, loves?: number | null, crys?: number | null, evils?: number | null } | null } | null } | null };
+export type PostQuery = { __typename?: 'Query', post?: { __typename?: 'PostEntityResponse', data?: { __typename?: 'PostEntity', id?: string | null, attributes?: { __typename?: 'Post', title: string, description: string, metaTitle: string, slug: string, locale?: string | null, thumbnail?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', name: string, alternativeText?: string | null, blurhash?: string | null, formats?: any | null, url: string } | null } | null } | null, content: Array<{ __typename: 'ComponentDynamicContentImage', id: string, media: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', name: string, alternativeText?: string | null, blurhash?: string | null, formats?: any | null, url: string } | null } | null } } | { __typename: 'ComponentDynamicContentText', id: string, text: string } | { __typename: 'Error' } | null> } | null } | null } | null };
+
+export type ImageFragmentFragment = { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', name: string, alternativeText?: string | null, blurhash?: string | null, formats?: any | null, url: string } | null } | null };
 
 export type PostsQueryVariables = Exact<{
   filters?: InputMaybe<PostFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>> | InputMaybe<Scalars['String']>>;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
 }>;
 
 
-export type PostsQuery = { __typename?: 'Query', posts?: { __typename?: 'PostEntityResponseCollection', data: Array<{ __typename?: 'PostEntity', id?: string | null, attributes?: { __typename?: 'Post', title: string, text?: string | null, locale?: string | null, likes?: number | null, fires?: number | null, loves?: number | null, crys?: number | null, evils?: number | null } | null }> } | null };
+export type PostsQuery = { __typename?: 'Query', posts?: { __typename?: 'PostEntityResponseCollection', data: Array<{ __typename?: 'PostEntity', id?: string | null, attributes?: { __typename?: 'Post', title: string, description: string, metaTitle: string, slug: string, locale?: string | null, thumbnail?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', name: string, alternativeText?: string | null, blurhash?: string | null, formats?: any | null, url: string } | null } | null } | null, content: Array<{ __typename: 'ComponentDynamicContentImage', id: string, media: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', name: string, alternativeText?: string | null, blurhash?: string | null, formats?: any | null, url: string } | null } | null } } | { __typename: 'ComponentDynamicContentText', id: string, text: string } | { __typename: 'Error' } | null> } | null }> } | null };
 
 export type LocalizationQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -1558,7 +1577,19 @@ export type MenuQueryVariables = Exact<{
 
 export type MenuQuery = { __typename?: 'Query', menu?: { __typename?: 'MenuEntityResponse', data?: { __typename?: 'MenuEntity', id?: string | null, attributes?: { __typename?: 'Menu', locale?: string | null, items?: Array<{ __typename?: 'ComponentLandingMenuItem', id: string, order?: number | null, title: string, href: string } | null> | null } | null } | null } | null };
 
-
+export const ImageFragmentFragmentDoc = gql`
+    fragment ImageFragment on UploadFileEntityResponse {
+  data {
+    attributes {
+      name
+      alternativeText
+      blurhash
+      formats
+      url
+    }
+  }
+}
+    `;
 export const PostDocument = gql`
     query Post($locale: I18NLocaleCode, $id: ID) {
   post(locale: $locale, id: $id) {
@@ -1566,18 +1597,31 @@ export const PostDocument = gql`
       id
       attributes {
         title
-        text
+        description
+        metaTitle
+        slug
         locale
-        likes
-        fires
-        loves
-        crys
-        evils
+        thumbnail {
+          ...ImageFragment
+        }
+        content {
+          __typename
+          ... on ComponentDynamicContentText {
+            id
+            text
+          }
+          ... on ComponentDynamicContentImage {
+            id
+            media {
+              ...ImageFragment
+            }
+          }
+        }
       }
     }
   }
 }
-    `;
+    ${ImageFragmentFragmentDoc}`;
 
 /**
  * __usePostQuery__
@@ -1608,24 +1652,37 @@ export type PostQueryHookResult = ReturnType<typeof usePostQuery>;
 export type PostLazyQueryHookResult = ReturnType<typeof usePostLazyQuery>;
 export type PostQueryResult = Apollo.QueryResult<PostQuery, PostQueryVariables>;
 export const PostsDocument = gql`
-    query Posts($filters: PostFiltersInput, $pagination: PaginationArg, $sort: [String]) {
-  posts(filters: $filters, pagination: $pagination, sort: $sort) {
+    query Posts($filters: PostFiltersInput, $pagination: PaginationArg, $sort: [String], $locale: I18NLocaleCode) {
+  posts(filters: $filters, pagination: $pagination, sort: $sort, locale: $locale) {
     data {
       id
       attributes {
         title
-        text
+        description
+        metaTitle
+        slug
         locale
-        likes
-        fires
-        loves
-        crys
-        evils
+        thumbnail {
+          ...ImageFragment
+        }
+        content {
+          __typename
+          ... on ComponentDynamicContentText {
+            id
+            text
+          }
+          ... on ComponentDynamicContentImage {
+            id
+            media {
+              ...ImageFragment
+            }
+          }
+        }
       }
     }
   }
 }
-    `;
+    ${ImageFragmentFragmentDoc}`;
 
 /**
  * __usePostsQuery__
@@ -1642,6 +1699,7 @@ export const PostsDocument = gql`
  *      filters: // value for 'filters'
  *      pagination: // value for 'pagination'
  *      sort: // value for 'sort'
+ *      locale: // value for 'locale'
  *   },
  * });
  */

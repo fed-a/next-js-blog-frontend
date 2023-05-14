@@ -29,15 +29,39 @@ const findBestMatchingLocale = (acceptLangHeader: string) => {
   return i18n.defaultLocale;
 };
 
+const NON_INTERNATIONALIZED_PATHS = ['/assets', '/favicon', '/api'];
+
 function shouldNotRedirect(pathname: string, localeFromPathname: string | null) {
-  return localeFromPathname || pathname.startsWith('/assets') || pathname.startsWith('/favicon');
+  return (
+    localeFromPathname || NON_INTERNATIONALIZED_PATHS.some((path) => pathname.startsWith(path))
+  );
+}
+
+function addUnregistredUserIdentification(response: NextResponse, request: NextRequest) {
+  const { pathname } = request.nextUrl;
+  if (!pathname.startsWith('/api/auth')) {
+    return;
+  }
+  let ip = request.ip ?? request.headers.get('x-real-ip');
+  const forwardedFor = request.headers.get('x-forwarded-for');
+  if (!ip && forwardedFor) {
+    ip = forwardedFor.split(',').at(0) ?? 'Unknown';
+  }
+  if (ip) {
+    response.cookies.set('user-ip', ip, {
+      httpOnly: false,
+    });
+  }
 }
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
+
   const localeFromPathname = getLangFromPathname(pathname);
   if (shouldNotRedirect(pathname, localeFromPathname)) {
-    return;
+    const response = NextResponse.next();
+    addUnregistredUserIdentification(response, request);
+    return response;
   }
 
   const userLocale = findBestMatchingLocale(

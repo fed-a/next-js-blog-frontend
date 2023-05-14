@@ -34,7 +34,7 @@ export function LocomotiveScrollProvider({ children }: { children: React.ReactNo
       scroll = new ResolvedLocomotiveScroll({
         el: divRef.current,
         smooth: true,
-        lerp: 0.1,
+        lerp: 0.09,
         initPosition,
         getSpeed: true,
         smartphone: {

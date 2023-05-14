@@ -4,14 +4,39 @@ query Post($locale: I18NLocaleCode, $id: ID) {
       id
       attributes {
         title
-        text
+        description
+        metaTitle
+        slug
         locale
-        likes
-        fires
-        loves
-        crys
-        evils
+        thumbnail {
+          ...ImageFragment
+        }
+        content {
+          __typename
+          ... on ComponentDynamicContentText {
+            id
+            text
+          }
+          ... on ComponentDynamicContentImage {
+            id
+            media {
+              ...ImageFragment
+            }
+          }
+        }
       }
+    }
+  }
+}
+
+fragment ImageFragment on UploadFileEntityResponse {
+  data {
+    attributes {
+      name
+      alternativeText
+      blurhash
+      formats
+      url
     }
   }
 }

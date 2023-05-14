@@ -22,3 +22,7 @@
     );
   }
 }
+
+.af-hero__bg {
+  @apply hero-bg-gradient-light dark:hero-bg-gradient absolute left-0 right-0 top-0 -z-50 min-h-[100dvh];
+}

@@ -34,8 +34,8 @@ export function FloatingBlock(props: FloatingBlockProps) {
       targets: floatingDiv.current,
       top: e.clientY,
       left: e.clientX,
-      duration: 300,
-      easing: 'easeOutElastic(1, .6)',
+      duration: 500,
+      easing: 'cubicBezier(0, 1, 0, 1)',
     });
   }, []);
 
