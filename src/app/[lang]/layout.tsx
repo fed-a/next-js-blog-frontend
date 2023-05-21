@@ -17,7 +17,7 @@ export async function generateStaticParams() {
   return i18n.locales.map((locale) => ({ lang: locale }));
 }
 
-export default function RootLayout({ children, params }: Params & Children) {
+export default async function RootLayout({ children, params }: Params & Children) {
   const { lang } = params;
 
   // favicon shows up as static prop...
@@ -43,6 +43,8 @@ export default function RootLayout({ children, params }: Params & Children) {
       </head>
       <body>
         <Providers>
+          {/* https://nextjs.org/docs/app/building-your-application/data-fetching/fetching#async-and-await-in-server-components */}
+          {/* @ts-expect-error Async Server Component */}
           <Navigation lang={lang} />
           <div className="af-wrapper">{children}</div>
           <Footer lang={lang} />
