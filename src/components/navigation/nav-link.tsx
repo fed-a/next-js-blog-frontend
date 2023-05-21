@@ -17,10 +17,7 @@ interface NavLinkProps {
 export function NavLink(props: NavLinkProps) {
   const { route, locale, children } = props;
   const pathname = usePathname();
-  // const headersList = headers();
-  // read the custom x-url header
-  // const url = headersList.get('x-url') || '';
-  // console.log({ url });
+
   const [isActive, setIsActive] = React.useState(false);
 
   const localeRoute = `/${locale}${route === '/' ? '' : route}`;

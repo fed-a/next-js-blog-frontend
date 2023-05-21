@@ -78,7 +78,7 @@ async function UiKit({ params }: Params) {
         <div className="h-72 w-72 bg-gray"></div>
       </FloatingBlock>
       <Typography type="h1">Разметка</Typography>
-      <Markdown>### Разметка</Markdown>
+      <Markdown>{'#### Razmetka\n```const code = "test"```'}</Markdown>
       <Typography type="h1">Свич темы</Typography>
       Не работает на сервере
       {/* <ThemeSwitch /> */}

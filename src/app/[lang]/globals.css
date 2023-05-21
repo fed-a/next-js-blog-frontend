@@ -28,6 +28,8 @@
 }
 body {
   @apply bg-white text-black;
+}
+* {
   transition: background-color 0.1s ease-in-out;
 }
 path:not([stroke]) {
@@ -125,7 +127,7 @@ path:not([stroke]) {
   }
 
   .af-wrapper {
-    @apply mt-28;
+    @apply mt-28 flex-grow;
   }
 }
 

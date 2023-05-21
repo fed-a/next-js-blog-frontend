@@ -48,6 +48,7 @@
         "groups": ["builtin", "external", "internal", "parent", "sibling", "index"]
       }
     ],
+    "no-underscore-dangle": ["error", { "allow": ["__typename"] }],
     "no-unused-vars": "error",
     "import/no-self-import": "error",
     "import/first": "error",
@@ -62,7 +63,13 @@
     ],
     "no-undef": "off",
     "import/prefer-default-export": "off",
-    "import/extensions": "off"
+    "import/extensions": "off",
+    "@next/next/no-img-element": "off"
   },
-  "ignorePatterns": ["src/gql/graphql.ts", "/*.js", "src/components/core/icon/load-icons.js"]
+  "ignorePatterns": [
+    "src/gql/graphql.ts",
+    "/*.js",
+    "src/components/core/icon/load-icons.js",
+    "next.config.mjs"
+  ]
 }

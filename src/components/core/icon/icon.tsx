@@ -17,7 +17,7 @@ interface IconProps {
 }
 
 export function Icon({ name, size = 'large', darkName, color }: IconProps) {
-  const { theme } = useTheme();
+  const { resolvedTheme: theme } = useTheme();
   const [iconName, setIconName] = useState(name);
 
   useEffect(() => {

@@ -906,6 +906,7 @@ export type Post = {
   publishedAt?: Maybe<Scalars['DateTime']>;
   slug: Scalars['String'];
   thumbnail?: Maybe<UploadFileEntityResponse>;
+  timeToRead: Scalars['Int'];
   title: Scalars['String'];
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
@@ -949,6 +950,7 @@ export type PostFiltersInput = {
   or?: InputMaybe<Array<InputMaybe<PostFiltersInput>>>;
   publishedAt?: InputMaybe<DateTimeFilterInput>;
   slug?: InputMaybe<StringFilterInput>;
+  timeToRead?: InputMaybe<IntFilterInput>;
   title?: InputMaybe<StringFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
 };
@@ -960,6 +962,7 @@ export type PostInput = {
   publishedAt?: InputMaybe<Scalars['DateTime']>;
   slug?: InputMaybe<Scalars['String']>;
   thumbnail?: InputMaybe<Scalars['ID']>;
+  timeToRead?: InputMaybe<Scalars['Int']>;
   title?: InputMaybe<Scalars['String']>;
 };
 
@@ -1165,7 +1168,6 @@ export type StringFilterInput = {
 export type UploadFile = {
   __typename?: 'UploadFile';
   alternativeText?: Maybe<Scalars['String']>;
-  blurhash?: Maybe<Scalars['String']>;
   caption?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   ext?: Maybe<Scalars['String']>;
@@ -1204,7 +1206,6 @@ export type UploadFileEntityResponseCollection = {
 export type UploadFileFiltersInput = {
   alternativeText?: InputMaybe<StringFilterInput>;
   and?: InputMaybe<Array<InputMaybe<UploadFileFiltersInput>>>;
-  blurhash?: InputMaybe<StringFilterInput>;
   caption?: InputMaybe<StringFilterInput>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
   ext?: InputMaybe<StringFilterInput>;
@@ -1229,7 +1230,6 @@ export type UploadFileFiltersInput = {
 
 export type UploadFileInput = {
   alternativeText?: InputMaybe<Scalars['String']>;
-  blurhash?: InputMaybe<Scalars['String']>;
   caption?: InputMaybe<Scalars['String']>;
   ext?: InputMaybe<Scalars['String']>;
   folder?: InputMaybe<Scalars['ID']>;
@@ -1544,9 +1544,9 @@ export type PostQueryVariables = Exact<{
 }>;
 
 
-export type PostQuery = { __typename?: 'Query', post?: { __typename?: 'PostEntityResponse', data?: { __typename?: 'PostEntity', id?: string | null, attributes?: { __typename?: 'Post', title: string, description: string, metaTitle: string, slug: string, locale?: string | null, thumbnail?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', name: string, alternativeText?: string | null, blurhash?: string | null, formats?: any | null, url: string } | null } | null } | null, content: Array<{ __typename: 'ComponentDynamicContentImage', id: string, media: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', name: string, alternativeText?: string | null, blurhash?: string | null, formats?: any | null, url: string } | null } | null } } | { __typename: 'ComponentDynamicContentText', id: string, text: string } | { __typename: 'Error' } | null> } | null } | null } | null };
+export type PostQuery = { __typename?: 'Query', post?: { __typename?: 'PostEntityResponse', data?: { __typename?: 'PostEntity', id?: string | null, attributes?: { __typename?: 'Post', title: string, description: string, metaTitle: string, slug: string, locale?: string | null, timeToRead: number, publishedAt?: any | null, thumbnail?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', name: string, alternativeText?: string | null, formats?: any | null, url: string, width?: number | null, height?: number | null } | null } | null } | null, content: Array<{ __typename: 'ComponentDynamicContentImage', id: string, media: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', name: string, alternativeText?: string | null, formats?: any | null, url: string, width?: number | null, height?: number | null } | null } | null } } | { __typename: 'ComponentDynamicContentText', id: string, text: string } | { __typename: 'Error' } | null> } | null } | null } | null };
 
-export type ImageFragmentFragment = { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', name: string, alternativeText?: string | null, blurhash?: string | null, formats?: any | null, url: string } | null } | null };
+export type ImageFragmentFragment = { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', name: string, alternativeText?: string | null, formats?: any | null, url: string, width?: number | null, height?: number | null } | null } | null };
 
 export type PostsQueryVariables = Exact<{
   filters?: InputMaybe<PostFiltersInput>;
@@ -1556,7 +1556,7 @@ export type PostsQueryVariables = Exact<{
 }>;
 
 
-export type PostsQuery = { __typename?: 'Query', posts?: { __typename?: 'PostEntityResponseCollection', data: Array<{ __typename?: 'PostEntity', id?: string | null, attributes?: { __typename?: 'Post', title: string, description: string, metaTitle: string, slug: string, locale?: string | null, thumbnail?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', name: string, alternativeText?: string | null, blurhash?: string | null, formats?: any | null, url: string } | null } | null } | null, content: Array<{ __typename: 'ComponentDynamicContentImage', id: string, media: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', name: string, alternativeText?: string | null, blurhash?: string | null, formats?: any | null, url: string } | null } | null } } | { __typename: 'ComponentDynamicContentText', id: string, text: string } | { __typename: 'Error' } | null> } | null }> } | null };
+export type PostsQuery = { __typename?: 'Query', posts?: { __typename?: 'PostEntityResponseCollection', data: Array<{ __typename?: 'PostEntity', id?: string | null, attributes?: { __typename?: 'Post', title: string, description: string, metaTitle: string, slug: string, locale?: string | null, timeToRead: number, publishedAt?: any | null, thumbnail?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', name: string, alternativeText?: string | null, formats?: any | null, url: string, width?: number | null, height?: number | null } | null } | null } | null, content: Array<{ __typename: 'ComponentDynamicContentImage', id: string, media: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', name: string, alternativeText?: string | null, formats?: any | null, url: string, width?: number | null, height?: number | null } | null } | null } } | { __typename: 'ComponentDynamicContentText', id: string, text: string } | { __typename: 'Error' } | null> } | null }> } | null };
 
 export type LocalizationQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -1583,9 +1583,10 @@ export const ImageFragmentFragmentDoc = gql`
     attributes {
       name
       alternativeText
-      blurhash
       formats
       url
+      width
+      height
     }
   }
 }
@@ -1617,6 +1618,8 @@ export const PostDocument = gql`
             }
           }
         }
+        timeToRead
+        publishedAt
       }
     }
   }
@@ -1678,6 +1681,8 @@ export const PostsDocument = gql`
             }
           }
         }
+        timeToRead
+        publishedAt
       }
     }
   }

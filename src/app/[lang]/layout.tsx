@@ -1,4 +1,5 @@
-import Navigation from '@/components/navigation';
+import { Footer } from '@/components/footer';
+import { Navigation } from '@/components/navigation';
 
 import { i18n } from '@/lib/i18n';
 import { Providers } from '@/lib/providers';
@@ -44,6 +45,7 @@ export default function RootLayout({ children, params }: Params & Children) {
         <Providers>
           <Navigation lang={lang} />
           <div className="af-wrapper">{children}</div>
+          <Footer lang={lang} />
         </Providers>
       </body>
     </html>

@@ -13,10 +13,10 @@ import './switch.css';
 
 function ThemeSwitchComponent() {
   const { isMounted } = useSsr();
-  const { theme, setTheme } = useTheme();
+  const { resolvedTheme: theme, setTheme } = useTheme();
 
   const handleChange = useCallback(() => {
-    setTheme(theme === 'dark' ? 'light' : 'dark');
+    setTheme(theme === 'light' ? 'dark' : 'light');
   }, [setTheme, theme]);
 
   // TODO: определение темы при загрузке

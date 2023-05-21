@@ -29,6 +29,8 @@ query Posts(
             }
           }
         }
+        timeToRead
+        publishedAt
       }
     }
   }
@@ -39,9 +41,10 @@ fragment ImageFragment on UploadFileEntityResponse {
     attributes {
       name
       alternativeText
-      blurhash
       formats
       url
+      width
+      height
     }
   }
 }

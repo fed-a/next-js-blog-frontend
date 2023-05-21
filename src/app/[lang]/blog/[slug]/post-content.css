@@ -1,0 +1,9 @@
+.af-article .af-markdown__img,
+.af-article .af-markdown__code {
+  @apply my-12;
+}
+
+.af-article .af-markdown {
+  @apply flex flex-col;
+  font-family: SourceSerifPro, serif;
+}

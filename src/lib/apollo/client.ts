@@ -4,7 +4,7 @@ import { onError } from '@apollo/client/link/error';
 let client: ApolloClient<any> | null = null;
 
 const httpLink = new HttpLink({
-  uri: process.env.STRAPI_ENDPOINT_GRAPHQL,
+  uri: process.env.NEXT_PUBLIC_NEXT_PUBLIC_STRAPI_ENDPOINT_GRAPHQL,
   fetch,
 });
 

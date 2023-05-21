@@ -24,6 +24,8 @@ query Post($locale: I18NLocaleCode, $id: ID) {
             }
           }
         }
+        timeToRead
+        publishedAt
       }
     }
   }
@@ -34,9 +36,10 @@ fragment ImageFragment on UploadFileEntityResponse {
     attributes {
       name
       alternativeText
-      blurhash
       formats
       url
+      width
+      height
     }
   }
 }

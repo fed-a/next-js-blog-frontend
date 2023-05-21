@@ -17,7 +17,8 @@ export default async function PostPage({ params }: { params: LocaleParam & PostP
         eq: slug,
       },
     },
-  });
-  const data = recentPosts.data?.posts?.data?.[0]?.attributes ?? null;
+  }).catch(() => null);
+  // return <code>{JSON.stringify(recentPosts)}</code>;
+  const data = recentPosts?.data?.posts?.data?.[0]?.attributes ?? null;
   return <PostContent data={data} />;
 }
