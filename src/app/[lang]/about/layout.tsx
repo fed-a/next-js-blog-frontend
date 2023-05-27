@@ -2,6 +2,8 @@ import React from 'react';
 
 import { Children } from '../types';
 
-export default function BlogLayout({ children }: Children) {
+import './locomotive-scroll.css';
+
+export default function AboutLayout({ children }: Children) {
   return <div className="container">{children}</div>;
 }

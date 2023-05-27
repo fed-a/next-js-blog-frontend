@@ -20,5 +20,9 @@ export default async function PostPage({ params }: { params: LocaleParam & PostP
   }).catch(() => null);
   // return <code>{JSON.stringify(recentPosts)}</code>;
   const data = recentPosts?.data?.posts?.data?.[0]?.attributes ?? null;
-  return <PostContent data={data} />;
+  return (
+    <div className="container">
+      <PostContent data={data} />
+    </div>
+  );
 }

@@ -1,53 +1,39 @@
 import { Metadata } from 'next';
+import React from 'react';
 
-import { LandingDocument, LandingQueryResult, LandingQueryVariables } from '@/gql';
+import { PostsDocument, PostsQueryResult, PostsQueryVariables } from '@/gql';
 
 import { fetchAPI } from '@/lib/api';
 
-import './home.css';
+import { PostCard } from './post-card';
 import { Params } from './types';
 
 export const metadata: Metadata = {
-  title: 'Anton Fedulov',
+  title: 'Blog',
 };
 
-export default async function Home({ params }: Params) {
+async function HomeBlog({ params }: Params) {
   const { lang } = params;
-
-  const landingData = await fetchAPI<LandingQueryResult, LandingQueryVariables>(LandingDocument, {
+  const recentPosts = await fetchAPI<PostsQueryResult, PostsQueryVariables>(PostsDocument, {
     locale: lang,
-  });
-
-  const { hero, about, project, blog } = landingData?.data ?? {};
-
-  const heroAttributes = hero?.data?.attributes;
-  const aboutAttributes = about?.data?.attributes;
-  const projectAttributes = project?.data?.attributes;
-  const blogAttributes = blog?.data?.attributes;
-
+    pagination: {
+      limit: 10,
+    },
+  }).catch(() => null);
+  // return <code>{JSON.stringify(recentPosts)}</code>;
   return (
-    <>
-      <main className="container">
-        <section className="af-hero__bg"></section>
-        <section className="min-h-[100dvh]">
-          <p>{heroAttributes?.name}</p>
-          <p>{heroAttributes?.toContacts}</p>
-          <p>{heroAttributes?.toWorks}</p>
-          <p>{heroAttributes?.down}</p>
-        </section>
-        <section className="min-h-[100dvh]">
-          <p>{aboutAttributes?.title}</p>
-          <p>{aboutAttributes?.myStack}</p>
-        </section>
-        <section className="min-h-[100dvh]">
-          <p>{projectAttributes?.title}</p>
-        </section>
-        <section className="min-h-[100dvh]">
-          <p>{blogAttributes?.title}</p>
-          <p>{blogAttributes?.tip}</p>
-          <p>{blogAttributes?.lastPostsTitle}</p>
-        </section>
-      </main>
-    </>
+    <div className="container">
+      <h1>Блог обо всяком</h1>
+      <div className="grid grid-cols-2 gap-28">
+        <div className="">
+          {recentPosts?.data?.posts?.data?.map((post) => (
+            <PostCard key={post.id} data={post.attributes ?? null} locale={lang} />
+          ))}
+        </div>
+        <aside className="border-l-[1px] border-black pl-28">Aside</aside>
+      </div>
+    </div>
   );
 }
+
+export default HomeBlog;

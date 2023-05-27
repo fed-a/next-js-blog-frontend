@@ -1,6 +1,6 @@
 export const routes = {
-  main: '/',
-  blog: '/blog',
+  about: '/about',
+  blog: '/',
   uiKit: '/ui-kit',
 };
 

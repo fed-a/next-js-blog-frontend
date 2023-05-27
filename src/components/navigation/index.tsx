@@ -8,6 +8,7 @@ import { ThemeSwitch } from '../theme-switch';
 
 import { NavLink } from './nav-link';
 import './navigation.css';
+import { Link } from '../core';
 
 interface NavigationProps {
   lang?: Locale;
@@ -26,7 +27,9 @@ export async function Navigation(props: NavigationProps) {
 
   return (
     <div className="af-nav">
-      <div className="af-nav__logo" />
+      <Link href="/" locale={lang}>
+        <div className="af-nav__logo" />
+      </Link>
       <ul>
         <li>
           <ThemeSwitch />

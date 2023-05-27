@@ -5,7 +5,6 @@ import { i18n } from '@/lib/i18n';
 import { Providers } from '@/lib/providers';
 
 import './globals.css';
-import './locomotive-scroll.css';
 import { Children, Params } from './types';
 
 export const metadata = {
