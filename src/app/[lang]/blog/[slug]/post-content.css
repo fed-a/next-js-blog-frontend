@@ -3,7 +3,7 @@
   @apply my-12;
 }
 
-.af-article .af-markdown {
-  @apply flex flex-col;
+.af-article .af-markdown p {
+  @apply flex flex-col text-[1.3125rem];
   font-family: SourceSerifPro, serif;
 }

@@ -1,31 +1,12 @@
 import SyntaxHighlighter from 'react-syntax-highlighter';
-import { atomOneDark, atomOneLight } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
-import { Skeleton } from '@/components/core/skeleton';
-
+import { MARKDOWN_CODE } from '../lib';
 import { MarkdownComponents } from '../types';
 
-export const getMarkdownComponents = (theme: string | null): MarkdownComponents => {
-  const markdownCodeTheme = (() => {
-    switch (theme) {
-      case 'dark':
-        return atomOneDark;
-      case 'light':
-        return atomOneLight;
-      default:
-        return null;
-    }
-  })();
+export const getMarkdownComponents = (): MarkdownComponents => {
   return {
     code: ({ node, inline, className, children, ...props }: any) => {
       const lineCount = String(children).split('\n').filter(Boolean).length;
-      if (!markdownCodeTheme) {
-        return (
-          <div className="py-2">
-            <Skeleton count={lineCount + 1} />
-          </div>
-        );
-      }
       const match = /language-(\w+)/.exec(className || '');
       return !inline && match ? (
         <div className="af-markdown__code">
@@ -37,7 +18,7 @@ export const getMarkdownComponents = (theme: string | null): MarkdownComponents 
           <SyntaxHighlighter
             {...props}
             showLineNumbers={lineCount > 1}
-            style={markdownCodeTheme}
+            style={MARKDOWN_CODE}
             language={match[1]}
           >
             {String(children).replace(/\n$/, '')}
