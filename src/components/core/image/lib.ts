@@ -20,9 +20,9 @@ function getMaxWidth(formatSize: keyof ImageFormats) {
     case 'small':
       return '768';
     case 'medium':
-      return '976';
+      return '1024';
     case 'large':
-      return '1440';
+      return '1400';
     default:
       return null;
   }
@@ -37,8 +37,8 @@ function getSrcSize(formatSize: keyof ImageFormats, format: ImageFormat) {
 export function getSizes(formats: ImageFormats) {
   const { small, medium, large } = formats;
 
-  return `${getSrcSize('small', small)} ${getSrcSize('medium', medium)} ${getSrcSize(
+  return `${getSrcSize('small', small)}, ${getSrcSize('medium', medium)}, ${getSrcSize(
     'large',
     large,
-  )} 100vw`;
+  )}, 100vw`;
 }
