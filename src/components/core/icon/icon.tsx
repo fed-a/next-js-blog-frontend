@@ -26,7 +26,7 @@ export function Icon({ name, size = 'large', darkName, color }: IconProps) {
 
   return (
     <span
-      style={{ backgroundColor: color ? `var(--${color})` : 'currentColor' }}
+      style={{ backgroundColor: color ? `var(--themed-color-${color})` : 'currentColor' }}
       className={cn('icon inline-block', `i-${iconName}`, SIZE[size])}
       data-theme
     />

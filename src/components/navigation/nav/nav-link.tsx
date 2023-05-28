@@ -6,7 +6,7 @@ import React, { useEffect } from 'react';
 import { Locale } from '@/lib/i18n';
 import { Routes } from '@/lib/routes';
 
-import { Link } from '../core';
+import { Link } from '../../core';
 
 interface NavLinkProps {
   route: Routes;

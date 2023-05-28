@@ -43,7 +43,7 @@ function ThemeSwitchComponent() {
       type="button"
       aria-label="Toggle theme"
     >
-      <Icon name="sun" darkName="moon-stars" size="large" color="purple" />
+      <Icon name="sun" darkName="moon-stars" size="large" color="accent" />
     </button>
   );
 }

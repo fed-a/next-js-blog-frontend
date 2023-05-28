@@ -13,6 +13,11 @@
   --lighter-purple: #4806ff;
   --darker-gray: #292e3a;
   --gray: #4c515e;
+  --shadow-color-border: 240, 240, 255;
+  --shadow-color-main: 15, 16, 28;
+  --themed-color-primary: #0f101c;
+  --themed-color-secondary: #383b46;
+  --themed-color-accent: #4122f5;
 }
 
 /* _________________ */
@@ -34,6 +39,13 @@ body {
 }
 path:not([stroke]) {
   @apply stroke-black;
+}
+[data-theme='dark'] {
+  --shadow-color-border: 66, 0, 245;
+  --shadow-color-main: 33, 0, 125;
+  --themed-color-primary: #f0f0ff;
+  --themed-color-secondary: #9ba2ba;
+  --themed-color-accent: #4122f5;
 }
 
 /* _________________ */

@@ -1,5 +1,5 @@
 .af-nav {
-  @apply container absolute right-[50%] mt-12 hidden translate-x-1/2 items-center justify-between sm:flex;
+  @apply container absolute right-[50%] mt-12 flex translate-x-1/2 items-center justify-between;
 }
 
 .af-nav__logo {

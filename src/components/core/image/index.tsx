@@ -26,7 +26,7 @@ export default function FormattedImage(props: BlurImageProps) {
     <div className="af-markdown__img">
       <div
         className={cn(
-          'm-auto max-w-full overflow-hidden rounded-lg sm:max-w-xs md:max-w-xl lg:max-w-2xl xl:max-w-3xl xxl:max-w-4xl',
+          'm-auto max-w-full overflow-hidden rounded-lg sm:max-w-xs md:max-w-xl lg:max-w-2xl xl:max-w-3xl',
           {
             'shadow-md': width + height >= 500,
             'rounded-lg': width + height >= 500,
@@ -39,6 +39,7 @@ export default function FormattedImage(props: BlurImageProps) {
       >
         <img
           src={strapiSrc}
+          loading="lazy"
           alt={alt}
           height={height}
           width={width}

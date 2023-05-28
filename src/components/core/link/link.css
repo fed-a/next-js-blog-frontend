@@ -10,7 +10,9 @@
   @apply bg-white;
 }
 
-.af-link.active,
+.af-link.active {
+  @apply opacity-80;
+}
 .af-link.disabled {
-  @apply text-gray;
+  @apply opacity-60;
 }

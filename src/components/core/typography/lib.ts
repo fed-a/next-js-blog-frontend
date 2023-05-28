@@ -53,15 +53,15 @@ export function resolveStyles(type: TypographyType, styles: TypographyStyle[]) {
     case 'h6':
       return resolveFontStyles(styles);
     case 'p1':
-      return `text-xxl ${resolveFontStyles(styles)}`;
+      return `text-md sm:text-lg md:text-xl lg:text-xxl ${resolveFontStyles(styles)}`;
     case 'p2':
-      return `text-xl ${resolveFontStyles(styles)}`;
+      return `text-md sm:text-lg md:text-xl ${resolveFontStyles(styles)}`;
     case 'p3':
-      return `text-l ${resolveFontStyles(styles)}`;
+      return `text-sm sm:text-md md:text-lg ${resolveFontStyles(styles)}`;
     case 'p4':
-      return `text-m ${resolveFontStyles(styles)}`;
+      return `text-xs sm:text-sm md:text-md ${resolveFontStyles(styles)}`;
     case 'p5':
-      return `text-s${resolveFontStyles(styles)}`;
+      return `text-xs sm:text-sm ${resolveFontStyles(styles)}`;
     case 'p6':
       return `text-xs ${resolveFontStyles(styles)}`;
     case 'marquee':

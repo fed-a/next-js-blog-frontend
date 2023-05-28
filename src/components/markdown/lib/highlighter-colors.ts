@@ -2,7 +2,8 @@ export const MARKDOWN_CODE = {
   hljs: {
     display: 'block',
     overflowX: 'auto',
-    padding: '0.5em',
+    padding: '1em',
+    paddingTop: '0.5em',
     color: 'var(--md-color)',
     background: 'var(--md-bg)',
   },
