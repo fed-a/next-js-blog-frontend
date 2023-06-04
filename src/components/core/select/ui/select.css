@@ -1,0 +1,41 @@
+.af-select__trigger {
+  @apply flex h-8 w-fit min-w-[10rem] max-w-full items-center justify-between gap-2 border-b-2 border-gray text-sm leading-none;
+}
+.af-select__trigger:hover {
+  @apply border-lighter-purple;
+}
+.af-select__trigger:focus {
+  @apply border-purple;
+}
+.af-select__trigger[data-placeholder] {
+  @apply overflow-x-hidden overflow-ellipsis text-gray;
+}
+.af-select__trigger-icon {
+  @apply shrink-0;
+}
+.af-select__content {
+  @apply overflow-hidden rounded-md bg-white shadow-sm dark:bg-black;
+}
+.af-select__viewport {
+  @apply py-3 pl-5 pr-4;
+}
+.af-select__item {
+  @apply relative flex h-6 select-none items-center rounded-md px-6 text-sm leading-none text-black dark:text-white;
+}
+.af-select__item[data-disabled] {
+  @apply pointer-events-none text-gray;
+}
+.af-select__item[data-highlighted] {
+  @apply bg-darker-gray outline-none;
+}
+.af-select__label {
+  @apply px-6 text-sm text-gray;
+}
+
+.select__item-indicator {
+  @apply absolute left-1 items-center justify-center;
+}
+
+.af-select__scroll-button {
+  @apply flex h-6 cursor-default items-center justify-center bg-white text-gray dark:bg-black;
+}

@@ -10,7 +10,11 @@ export function PortalComponent({ children }: PortalProps) {
     document.body.appendChild(container);
 
     return () => {
-      document.body.removeChild(container);
+      try {
+        document.body.removeChild(container);
+      } catch (e) {
+        // node is already removed
+      }
     };
   }, [container]);
 

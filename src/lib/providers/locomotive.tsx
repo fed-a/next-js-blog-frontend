@@ -56,9 +56,7 @@ export function LocomotiveScrollProvider({ children }: { children: React.ReactNo
   return (
     <LocomotiveScrollContext.Provider value={scrollRef}>
       <div data-scroll-container data-scroll-offset="100,100" ref={divRef}>
-        <div className="flex min-h-[100dvh] max-w-[100dvw] flex-col overflow-hidden">
-          {children}
-        </div>
+        {children}
       </div>
     </LocomotiveScrollContext.Provider>
   );

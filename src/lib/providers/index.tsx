@@ -3,7 +3,7 @@
 import dynamic from 'next/dynamic';
 import { ThemeProvider } from 'next-themes';
 
-import { LocomotiveScrollProvider } from './locomotive';
+// import { LocomotiveScrollProvider } from './locomotive';
 import SkeletonTheming from './skeleton-theme';
 
 const YandexMetricaProvider = dynamic(() => import('./yandex-metrica'), {
@@ -15,7 +15,9 @@ export function Providers({ children }: { children: React.ReactNode }) {
     <>
       <ThemeProvider>
         <SkeletonTheming>
-          <LocomotiveScrollProvider>{children}</LocomotiveScrollProvider>
+          {/* <LocomotiveScrollProvider> */}
+          {children}
+          {/* </LocomotiveScrollProvider> */}
         </SkeletonTheming>
       </ThemeProvider>
       <YandexMetricaProvider />

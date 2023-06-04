@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 
 import { Button, ButtonLink, Link, Typography } from '@/components/core';
+import { Select } from '@/components/core/select';
 import { FloatingBlock } from '@/components/floating-block';
 import { Markdown } from '@/components/markdown';
 import { Marquee } from '@/components/marquee';
@@ -82,6 +83,16 @@ async function UiKit({ params }: Params) {
       <Typography type="h1">Свич темы</Typography>
       Не работает на сервере
       {/* <ThemeSwitch /> */}
+      <Typography type="h1">Селект</Typography>
+      <Select
+        locale="de"
+        value="Test1"
+        name="test"
+        options={[
+          { value: 'Test1', label: 'Test1' },
+          { value: 'Test2', label: 'Test2' },
+        ]}
+      />
       <Typography type="h1">Бегущая строка</Typography>
       <Marquee speed={8} repeatTimes={6}>
         <Typography type="marquee">TestTestTestTest TestTes</Typography>
