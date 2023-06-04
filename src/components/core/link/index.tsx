@@ -2,7 +2,7 @@
 
 import anime, { AnimeInstance } from 'animejs';
 import LinkNext from 'next/link';
-import React, { memo, useCallback, useEffect, useMemo, useRef } from 'react';
+import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { Locale } from '@/lib/i18n';
 import { cn } from '@/lib/utils';
@@ -15,7 +15,7 @@ interface LinkProps {
   locale?: Locale;
   children: React.ReactNode;
   linkIcon?: boolean;
-  underlined?: 'always' | 'hover' | 'never';
+  underlined?: 'always' | 'hover' | 'hover-static' | 'never';
   active?: boolean;
   disabled?: boolean;
 }
@@ -34,38 +34,44 @@ function LinkComponent(props: LinkProps) {
   const lineAnimeIn = useRef<AnimeInstance | null>(null);
   const lineAnimeOut = useRef<AnimeInstance | null>(null);
 
-  const isUnderlinedOnHover = useMemo(() => underline === 'hover', [underline]);
-  const isNeverUnderlined = useMemo(() => underline === 'never', [underline]);
+  const [isHover, setIsHover] = useState(false);
+
+  const isAnimatedUnderlinOnHover = useMemo(() => underline === 'hover', [underline]);
+  const isNeverAnimatedUnderline = useMemo(() => underline === 'never', [underline]);
 
   useEffect(() => {
-    if (isUnderlinedOnHover) {
+    if (isAnimatedUnderlinOnHover) {
       lineAnimeIn.current = anime(getLinkAnimeInParams(lineRef.current));
       lineAnimeOut.current = anime(getLinkAnimeOutParams(lineRef.current));
       lineRef.current?.setAttribute('style', 'width: 0%;');
     }
-  }, [isUnderlinedOnHover]);
+  }, [isAnimatedUnderlinOnHover]);
 
   const handleMouseIn = useCallback(() => {
-    if (isUnderlinedOnHover && lineRef.current) {
+    setIsHover(true);
+    if (isAnimatedUnderlinOnHover && lineRef.current) {
       lineAnimeOut.current?.pause();
       lineAnimeIn.current?.restart();
     }
-  }, [isUnderlinedOnHover]);
+  }, [isAnimatedUnderlinOnHover]);
 
   const handleMouseOut = useCallback(() => {
-    if (isUnderlinedOnHover && lineRef.current) {
+    setIsHover(false);
+    if (isAnimatedUnderlinOnHover && lineRef.current) {
       lineAnimeIn.current?.pause();
       lineAnimeOut.current?.restart();
     }
-  }, [isUnderlinedOnHover]);
+  }, [isAnimatedUnderlinOnHover]);
 
   const className = useMemo(
     () =>
       cn('af-link', {
         active,
         disabled,
+        'animated-underline': isAnimatedUnderlinOnHover,
+        hover: isHover,
       }),
-    [active, disabled],
+    [active, disabled, isAnimatedUnderlinOnHover, isHover],
   );
 
   if (disabled) {
@@ -102,7 +108,7 @@ function LinkComponent(props: LinkProps) {
           />
         </svg>
       )}
-      {!isNeverUnderlined && (
+      {!isNeverAnimatedUnderline && (
         <hr
           className="af-link__line"
           ref={lineRef}

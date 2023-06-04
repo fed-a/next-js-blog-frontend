@@ -28,7 +28,7 @@ export default async function About({ params }: Params) {
 
   return (
     <>
-      <main className="container">
+      <main>
         <section className="af-hero__bg"></section>
         <section className="min-h-[100dvh]">
           <p>{heroAttributes?.name}</p>

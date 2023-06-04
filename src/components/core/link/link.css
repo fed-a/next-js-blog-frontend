@@ -3,16 +3,18 @@
 }
 
 .af-link__line {
-  @apply absolute bottom-0 left-0 h-[0.125em] w-full border-none bg-black;
+  @apply absolute -bottom-1 left-1/2 h-[0.125em] w-full -translate-x-1/2 border-none bg-black;
 }
-
-[data-theme='dark'] .af-link__line {
-  @apply bg-white;
+.af-link:not(.animated-underline).hover {
+  @apply underline underline-offset-2;
 }
-
 .af-link.active {
   @apply opacity-80;
 }
 .af-link.disabled {
   @apply opacity-60;
+}
+
+[data-theme='dark'] .af-link__line {
+  @apply bg-white;
 }

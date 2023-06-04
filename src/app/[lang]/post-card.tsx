@@ -20,10 +20,10 @@ export function PostCard(props: PostCardProps) {
   const { thumbnail } = thumbnailImage?.data?.attributes?.formats ?? {};
   const { url } = thumbnail ?? {};
   return (
-    <article className="flex justify-between gap-4 border-b-[1px] border-black pb-6 dark:border-white">
+    <article className="flex justify-between gap-4 border-b-[1px] border-black pb-8 dark:border-white">
       <div className="flex-grow ">
         {title && (
-          <Link href={`/blog/${slug}`} locale={locale} underlined="hover">
+          <Link href={`/blog/${slug}`} locale={locale} underlined="hover-static">
             <Typography type="p2" styleType={['bold']} className="line-clamp-2 overflow-ellipsis">
               {testFlag
                 ? cutTitle(`Какой-то очень  asda длинный заголовок, чтобы понять, как поведет себя верстка с большим
