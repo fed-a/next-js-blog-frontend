@@ -6,7 +6,12 @@ import { createContext, useEffect, useMemo, useRef, useState } from 'react';
 
 import { i18n } from '@/lib/i18n';
 
-const IGNORE_PATHS = i18n.locales.map((locale) => `/${locale}/blog`);
+import { routes } from '../routes';
+
+const SMOOTH_PATHS = [
+  ...i18n.locales.map((locale) => `/${locale}${routes.uiKit}`),
+  ...i18n.locales.map((locale) => `/${locale}${routes.about}`),
+];
 
 export const LocomotiveScrollContext = createContext<LocomotiveScroll | null>(null);
 
@@ -15,13 +20,13 @@ export function LocomotiveScrollProvider({ children }: { children: React.ReactNo
   const pathname = usePathname();
   const [scrollRef, setScrollRef] = useState<LocomotiveScroll | null>(null);
 
-  const isNotSmooth = useMemo(
-    () => IGNORE_PATHS.some((ignorePath) => pathname.startsWith(ignorePath)),
+  const isSmooth = useMemo(
+    () => SMOOTH_PATHS.some((ignorePath) => pathname.startsWith(ignorePath)),
     [pathname],
   );
 
   useEffect(() => {
-    if (isNotSmooth) {
+    if (!isSmooth) {
       return () => {};
     }
     let scroll: LocomotiveScroll | null = null;
@@ -46,7 +51,7 @@ export function LocomotiveScrollProvider({ children }: { children: React.ReactNo
     return () => {
       scroll?.destroy();
     };
-  }, [isNotSmooth, pathname]);
+  }, [isSmooth, pathname]);
 
   return (
     <LocomotiveScrollContext.Provider value={scrollRef}>
