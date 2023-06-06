@@ -1,8 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    mdxRs: true,
-  },
   images: {
     domains: [process.env.STRAPI_HOSTNAME, 'localhost'],
     loader: 'default',
