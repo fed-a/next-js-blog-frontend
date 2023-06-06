@@ -2,57 +2,99 @@
 @tailwind components;
 @tailwind utilities;
 
-/* _________________ */
-/* ______VARS_______ */
-/* _________________ */
+@layer base {
+  :root {
+    --black: #0f101c;
+    --white: #f0f0ff;
+    --purple: #4200f5;
+    --lighter-purple: #4806ff;
+    --darker-gray: #292e3a;
+    --gray: #4c515e;
+    --shadow-color-border: 240, 240, 255;
+    --shadow-color-main: 15, 16, 28;
+    --themed-color-primary: #0f101c;
+    --themed-color-secondary: #383b46;
+    --themed-color-accent: #4122f5;
 
-:root {
-  --black: #0f101c;
-  --white: #f0f0ff;
-  --purple: #4200f5;
-  --lighter-purple: #4806ff;
-  --darker-gray: #292e3a;
-  --gray: #4c515e;
-  --shadow-color-border: 240, 240, 255;
-  --shadow-color-main: 15, 16, 28;
-  --themed-color-primary: #0f101c;
-  --themed-color-secondary: #383b46;
-  --themed-color-accent: #4122f5;
-}
+    --background: var(--white);
+    --foreground: var(--black);
 
-/* _________________ */
-/* _____THEMES______ */
-/* _________________ */
+    --muted: var(--white);
+    --muted-foreground: var(--gray);
 
-[data-theme='dark'],
-[data-theme='dark'] body {
-  @apply bg-black text-white;
-}
-[data-theme='dark'] path:not([stroke]) {
-  @apply stroke-white;
-}
-body {
-  @apply bg-white text-black;
-}
-* {
-  transition: background-color 0.1s ease-in-out;
-}
-path:not([stroke]) {
-  @apply stroke-black;
-}
-[data-theme='dark'] {
-  --shadow-color-border: 66, 0, 245;
-  --shadow-color-main: 33, 0, 125;
-  --themed-color-primary: #f0f0ff;
-  --themed-color-secondary: #9ba2ba;
-  --themed-color-accent: #4122f5;
-}
+    --popover: var(--white);
+    --popover-foreground: var(--black);
 
-/* _________________ */
-/* ______BASE_______ */
-/* _________________ */
+    --card: var(--white);
+    --card-foreground: var(--black);
+
+    --border: var(--gray);
+    --input: var(--white);
+
+    --primary: var(--black);
+    --primary-foreground: var(--white);
+
+    --secondary: var(--white);
+    --secondary-foreground: var(--black);
+
+    --accent: var(--purple);
+    --accent-foreground: var(--white);
+
+    --destructive: var(--gray);
+    --destructive-foreground: var(--white);
+
+    --ring: var(--gray);
+
+    --radius: 0.5rem;
+  }
+
+  [data-theme='dark'] {
+    --shadow-color-border: 66, 0, 245;
+    --shadow-color-main: 33, 0, 125;
+    --themed-color-primary: #f0f0ff;
+    --themed-color-secondary: #9ba2ba;
+    --themed-color-accent: #4122f5;
+
+    --background: var(--black);
+    --foreground: var(--white);
+
+    --muted: var(--black);
+    --muted-foreground: var(--gray);
+
+    --popover: var(--black);
+    --popover-foreground: var(--white);
+
+    --card: var(--black);
+    --card-foreground: var(--white);
+
+    --border: var(--gray);
+    --input: var(--black);
+
+    --primary: var(--white);
+    --primary-foreground: var(--black);
+
+    --secondary: var(--black);
+    --secondary-foreground: var(--white);
+
+    --accent: var(--purple);
+    --accent-foreground: var(--white);
+
+    --destructive: var(--gray);
+    --destructive-foreground: var(--black);
+
+    --ring: var(--gray);
+  }
+}
 
 @layer base {
+  * {
+    @apply border-border;
+    transition: background-color 0.1s ease-in-out;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: 'rlig' 1, 'calt' 1;
+  }
   html {
     font-family: 'Infer', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Roboto, Arial,
       sans-serif;

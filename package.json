@@ -24,6 +24,7 @@
     "eslint": "8.40.0",
     "graphql": "^16.6.0",
     "graphql-tag": "^2.12.6",
+    "lucide-react": "^0.240.0",
     "next": "13.4.1",
     "next-mdx-remote": "^4.4.1",
     "next-themes": "^0.2.1",
@@ -34,7 +35,7 @@
     "react-loading-skeleton": "^3.3.1",
     "react-markdown": "^8.0.7",
     "react-syntax-highlighter": "^15.5.0",
-    "tailwind-merge": "^1.12.0",
+    "tailwind-merge": "^1.13.0",
     "tailwindcss-animate": "^1.0.5",
     "typescript": "5.0.4"
   },
