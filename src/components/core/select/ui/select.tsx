@@ -62,7 +62,9 @@ export function Select(props: SelectProps) {
       dir={dir}
     >
       <RadixSelect.Trigger className="af-select__trigger" aria-label={ariaLabel ?? name}>
-        <RadixSelect.Value placeholder={placeholder} />
+        <RadixSelect.Value placeholder={placeholder} asChild>
+          <div>{options.find((o) => o.value === value)?.label || placeholder}</div>
+        </RadixSelect.Value>
         <RadixSelect.Icon className="af-select__trigger-icon">
           <Icon name="arrow-down-mini" size="medium" color="primary" />
         </RadixSelect.Icon>

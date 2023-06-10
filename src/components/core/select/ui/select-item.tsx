@@ -17,7 +17,9 @@ export const SelectItem = React.forwardRef<any, SelectItemProps>(
   ({ children, className, ...props }, forwardedRef) => {
     return (
       <SelectRadix.Item className={cn('select__item', className)} {...props} ref={forwardedRef}>
-        <SelectRadix.ItemText>{children}</SelectRadix.ItemText>
+        <SelectRadix.ItemText asChild>
+          <span className="cursor-pointer">{children}</span>
+        </SelectRadix.ItemText>
         <SelectRadix.ItemIndicator className="select__item-indicator">
           <Icon name="arrow-down-mini" size="small" color="primary" />
         </SelectRadix.ItemIndicator>
