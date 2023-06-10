@@ -1,44 +1,43 @@
-import { ImageFormat, ImageFormats } from './types';
+import { ImageFormats, ImageFormatSource } from './types';
 
-export function getSrcSet(formats: ImageFormats) {
-  return Object.entries(formats).reduce((acc, entry) => {
-    const [size, format] = entry as [keyof ImageFormats, ImageFormats[keyof ImageFormats]];
+const IGNORE_FORMATS = ['blur', 'thumbnail'];
+const MIME_TYPES = new Map([
+  ['.jpg', 'image/jpeg'],
+  ['.jpeg', 'image/jpeg'],
+  ['.png', 'image/png'],
+  ['.gif', 'image/gif'],
+  ['.webp', 'image/webp'],
+]);
 
-    if (size === 'thumbnail' || !format) {
-      return acc;
+function sortSources(sources: ImageFormatSource[]) {
+  return sources.sort((a, b) => {
+    if (a.type === b.type) {
+      return a.width - b.width;
     }
-
-    const { url, width } = format;
-
-    const formatSrcSet = `${url} ${width}w`;
-    return acc === '' ? formatSrcSet : `${acc}, ${formatSrcSet}`;
-  }, '');
+    return a.type === 'image/webp' ? -1 : 1;
+  });
 }
 
-function getMaxWidth(formatSize: keyof ImageFormats) {
-  switch (formatSize) {
-    case 'small':
-      return '768';
-    case 'medium':
-      return '1024';
-    case 'large':
-      return '1400';
-    default:
-      return null;
+export function generateImageAttributes(formats: ImageFormats | null) {
+  if (!formats) {
+    return [];
   }
-}
+  const keys = Object.keys(formats);
+  const result: ImageFormatSource[] = [];
 
-function getSrcSize(formatSize: keyof ImageFormats, format: ImageFormat) {
-  const { width } = format;
-  const maxLength = getMaxWidth(formatSize);
-  return `(max-width: ${maxLength}px) ${width}px`;
-}
+  keys.forEach((key) => {
+    if (IGNORE_FORMATS.includes(key)) {
+      return;
+    }
+    const format = formats[key as keyof ImageFormats];
+    const { url, width, ext } = format;
+    result.push({
+      srcSet: `${url}`,
+      media: `(max-width: ${width + 48}px)`,
+      type: MIME_TYPES.get(ext) ?? '',
+      width,
+    });
+  });
 
-export function getSizes(formats: ImageFormats) {
-  const { small, medium, large } = formats;
-
-  return `${getSrcSize('small', small)}, ${getSrcSize('medium', medium)}, ${getSrcSize(
-    'large',
-    large,
-  )}, 100vw`;
+  return sortSources(result);
 }

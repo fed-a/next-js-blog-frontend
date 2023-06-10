@@ -1,3 +1,10 @@
+export interface ImageFormatSource {
+  srcSet: string;
+  media: string;
+  type: string;
+  width: number;
+}
+
 export interface ImageFormat {
   ext: string;
   url: string;
@@ -10,8 +17,14 @@ export interface ImageFormat {
 }
 
 export interface ImageFormats {
-  small: ImageFormat;
-  medium: ImageFormat;
-  large: ImageFormat;
+  lg: ImageFormat;
+  md: ImageFormat;
+  sm: ImageFormat;
+  xs: ImageFormat;
+  blur: ImageFormat;
+  lg_w: ImageFormat;
+  md_w: ImageFormat;
+  sm_w: ImageFormat;
+  xs_w: ImageFormat;
   thumbnail: ImageFormat;
 }

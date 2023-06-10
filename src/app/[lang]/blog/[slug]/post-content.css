@@ -1,4 +1,4 @@
-.af-article .af-markdown__img,
+.af-article .af-img,
 .af-article .af-markdown__code {
   @apply my-12;
 }
