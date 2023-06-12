@@ -2,7 +2,7 @@
 
 import anime, { AnimeInstance } from 'animejs';
 import LinkNext from 'next/link';
-import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { memo, useCallback, useEffect, useMemo, useRef } from 'react';
 
 import { Locale } from '@/lib/i18n';
 import { cn } from '@/lib/utils';
@@ -34,8 +34,6 @@ function LinkComponent(props: LinkProps) {
   const lineAnimeIn = useRef<AnimeInstance | null>(null);
   const lineAnimeOut = useRef<AnimeInstance | null>(null);
 
-  const [isHover, setIsHover] = useState(false);
-
   const isAnimatedUnderlinOnHover = useMemo(() => underline === 'hover', [underline]);
   const isNeverAnimatedUnderline = useMemo(() => underline === 'never', [underline]);
 
@@ -48,7 +46,6 @@ function LinkComponent(props: LinkProps) {
   }, [isAnimatedUnderlinOnHover]);
 
   const handleMouseIn = useCallback(() => {
-    setIsHover(true);
     if (isAnimatedUnderlinOnHover && lineRef.current) {
       lineAnimeOut.current?.pause();
       lineAnimeIn.current?.restart();
@@ -56,7 +53,6 @@ function LinkComponent(props: LinkProps) {
   }, [isAnimatedUnderlinOnHover]);
 
   const handleMouseOut = useCallback(() => {
-    setIsHover(false);
     if (isAnimatedUnderlinOnHover && lineRef.current) {
       lineAnimeIn.current?.pause();
       lineAnimeOut.current?.restart();
@@ -69,9 +65,8 @@ function LinkComponent(props: LinkProps) {
         active,
         disabled,
         'animated-underline': isAnimatedUnderlinOnHover,
-        hover: isHover,
       }),
-    [active, disabled, isAnimatedUnderlinOnHover, isHover],
+    [active, disabled, isAnimatedUnderlinOnHover],
   );
 
   if (disabled) {

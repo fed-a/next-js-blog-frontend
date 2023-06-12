@@ -5,7 +5,7 @@
 .af-link__line {
   @apply absolute -bottom-1 left-1/2 h-[0.125em] w-full -translate-x-1/2 border-none bg-black;
 }
-.af-link:not(.animated-underline).hover {
+.af-link:not(.disabled):not(.animated-underline):hover {
   @apply underline underline-offset-2;
 }
 .af-link.active {

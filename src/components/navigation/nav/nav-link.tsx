@@ -19,18 +19,20 @@ export function NavLink(props: NavLinkProps) {
   const pathname = usePathname();
 
   const [isActive, setIsActive] = React.useState(false);
+  const [isDisabled, setIsDisabled] = React.useState(false);
 
   const localeRoute = `/${locale}${route === '/' ? '' : route}`;
 
   useEffect(() => {
-    setIsActive(pathname.endsWith(localeRoute));
+    setIsActive(pathname.startsWith(localeRoute));
+    setIsDisabled(pathname.endsWith(localeRoute));
   }, [localeRoute, pathname, route]);
 
   return (
     <Link
       href={route}
       active={isActive}
-      disabled={isActive}
+      disabled={isDisabled}
       locale={locale}
       underlined={isActive ? 'never' : 'hover'}
     >
