@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 import { getStrapiMedia, getStrapiMediaFormats } from '@/lib/api';
 import { cn } from '@/lib/utils';
@@ -13,7 +13,7 @@ interface BlurImageProps {
   alt: string;
   width: number;
   height: number;
-  formats?: ImageFormats;
+  formats?: Partial<ImageFormats>;
   caption?: string;
   // TODO
   className?: string;
@@ -25,7 +25,7 @@ export default function FormattedImage(props: BlurImageProps) {
   const strapiSrc = getStrapiMedia(src);
   const strapiFormats = getStrapiMediaFormats(formats ?? null);
   const sources = generateImageAttributes(strapiFormats ?? null);
-  const blurSource = getStrapiMedia(formats?.blur.url ?? '');
+  const blurSource = getStrapiMedia(formats?.blur?.url ?? null);
 
   const pictureContainerRef = useRef<HTMLDivElement>(null);
 
@@ -49,7 +49,7 @@ export default function FormattedImage(props: BlurImageProps) {
     }
   });
 
-  const picture = (
+  const picture = strapiSrc ? (
     <div
       className={cn(
         'm-auto max-w-full overflow-hidden rounded-lg sm:max-w-xs md:max-w-xl lg:max-w-2xl xl:max-w-3xl',
@@ -72,7 +72,7 @@ export default function FormattedImage(props: BlurImageProps) {
           backgroundImage: `url(${blurSource})`,
         }}
       >
-        <picture className="opacity-0">
+        <picture suppressHydrationWarning className="opacity-0">
           {sources.map((source) => (
             <source
               key={source.srcSet}
@@ -85,7 +85,7 @@ export default function FormattedImage(props: BlurImageProps) {
         </picture>
       </div>
     </div>
-  );
+  ) : null;
 
   return (
     <div className="af-img">
